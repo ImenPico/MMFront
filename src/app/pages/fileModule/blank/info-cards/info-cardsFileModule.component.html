@@ -1,0 +1,44 @@
+<div name="form">
+        <div class="modal-header" style="background: #ebe8e8 ;color: black">
+          
+          <h4 class="modal-title"> {{ name }} Details</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                  (click)="clear()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-12 mb-4">
+                    <div widget class="card border-0 box-shadow">
+                        <div class="card-body pt-0 widget-body">
+                            <br/>
+                            <div class="form-group">
+                                <table style="width:100%">
+                                    <tr>
+                                        <th>Name</th>
+                                        <td><input [(ngModel)]="name"/></td>
+                                        <th>ID</th>
+                                        <td>{{id}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Created at</th>
+                                        <td>{{createdAt | date :'dd/MM/yyyy'}}</td>
+                                        <th>Modified at</th>
+                                        <td>{{modifiedAt | date :'dd/MM/yyyy'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Created by</th>
+                                        <td>{{createdbyUser}}</td>
+                                        <th>Parent ID</th>
+                                        <td>{{parentId}}</td>
+                                    </tr>
+                                </table>        
+                            </div>
+                        </div>
+                        <div style="width: 100%;float: right;">
+                            <button class="btn btn-primary" type="button" (click)="updateFolderOrFile()">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

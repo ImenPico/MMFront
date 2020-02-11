@@ -1,0 +1,85 @@
+<div class="row">
+    <div class="col-lg-12 col-12 vertical-tabs">
+        <div class="row pl-3 pr-3">
+
+<!--            <div class="tab-content col-30" style="width:100%">-->
+<!--                <div class="tab-pane active" id="listNodeChildren">-->
+                                        <ul>
+
+                                                <a id="aa"  *ngFor="let ur of jsonUrl;let i=index"  (click)="getChildrenUrl(jsonUrl[i].node)"> </a>
+<!--                                            <i class="fa fa-chevron-left" aria-hidden="true" (click)="getChildrenUrl(jsonUrl[0].node)"></i>-->
+<!---->
+                                        </ul>
+
+
+
+                    <!--<adf-add-permission-->
+                            <!--[nodeId]="nodeId"-->
+                            <!--(success)="onSuccess($event)"-->
+                            <!--(error)="onError($event)">-->
+                    <!--</adf-add-permission>-->
+
+                    <!--<i class="fa fa-chevron-left" aria-hidden="true" (click)="returnBack()"></i>-->
+                    <dx-data-grid
+                            id="gridList"
+                            [dataSource]="dataSource"
+                            [columnAutoWidth]="true"
+                            [showRowLines]="true"
+                            [hoverStateEnabled]="true"
+                            [showBorders]="true"
+                            [(selectedRowKeys)]="selectedRows"
+                            (onToolbarPreparing)="onToolbarPreparing($event)"
+                            [selectionFilter]="['entry.id']">
+                        <dxo-selection
+                                [deferred]="true"
+                                mode="multiple"
+                        ></dxo-selection>
+                        <dxi-column dataField="entry.isFolder" caption="Type" [width]="70" [allowFiltering]="false"
+                                    [allowSorting]="false" cellTemplate="cellTemplate"></dxi-column>
+                        <!--cellTemplate="cellTemplate"  type   -->
+
+                        <dxi-column dataField="entry.name" caption="Name"></dxi-column>
+                        <dxi-column dataField="entry.createdAt" caption="Created at"></dxi-column>
+                        <dxi-column dataField="entry.modifiedAt" caption="modified at"></dxi-column>
+                        <dxi-column dataField="Actions" [allowFiltering]="false" [width]="150"
+                                    [allowSorting]="false" cellTemplate="cemplate" alignment="center"></dxi-column>
+
+                        <!--cellTemplate="cemplate"-action -->
+                        <div *dxTemplate="let data of 'cemplate'">
+
+                            <i class="fa fa-eye" data-toggle="tooltip" title="Show" (click)="showDetails(data.data)" style="margin-right: 4%;" *ngIf="data.data.entry.isFolder == false"></i>
+                            <i class="fa fa-edit fa-1x fa-fw" data-toggle="tooltip" title="Edit" (click)="editDetails(data.data)" style="margin-right: 4%;" [hidden]="this.serviceFile.privilege=='lecteur'"></i>
+                            <!--                            <i class="fa fa-lock" data-toggle="tooltip" title="Lock" (click)="lockNode(data.data)" style="margin-right: 4%;"></i>-->
+                            <!--&lt;!&ndash;                            <i class="fa fa-unlock" data-toggle="tooltip" title="Unlock" (click)="unlockNode(data.data)" style="margin-right: 4%;"></i>&ndash;&gt;-->
+                            <i class="fa fa-clone" data-toggle="tooltip" title="importer nouvelle version" (click)="importwithnewversion(data.data)" style="margin-right: 4%;" [hidden]="this.serviceFile.privilege=='lecteur'"  *ngIf="data.data.entry.isFolder == false" ></i>
+                            <a (click)="scannerversionning(data.data)"><img click="" src="../../../../assets/img/app/imgscanne.jpg" height="18" width="18" style="margin-right: 11%;" [hidden]="this.serviceFile.privilege=='lecteur'"  *ngIf="data.data.entry.isFolder == false"/></a>
+<!--                            <i class="fa fa-print" data-toggle="tooltip" title="importer nouvelle version scanner" (click)="importwithnewversionscanner(data.data)" style="margin-right: 4%;" [hidden]="this.serviceFile.privilege=='lecteur'"  *ngIf="data.data.entry.isFolder == false"></i>-->
+                            <!--<i class="fa fa-trash" data-toggle="tooltip" title="importer nouvelle version scanner" (click)="deletef(data.data)" style="margin-right: 5px;"></i>-->
+                            <i class="fa fa-download" aria-hidden="true"(click)="downlodeFile(data.data)" style="margin-right: 4%; "*ngIf="data.data.entry.isFolder == false"></i>
+                        </div>
+
+
+                        <div *dxTemplate="let data of 'cellTemplate'">
+                            <i *ngIf="data.data.entry.isFolder == true" class="dx-icon-folder"   (click)="children(data.data)"></i>
+                            <i *ngIf="data.data.entry.isFolder == false" class="dx-icon-doc"></i>
+                        </div>
+
+                        <div *dxTemplate="let data of 'Nodeposition'">
+                            <div></div>
+                        </div>
+
+                        <dxo-paging [pageSize]="10"></dxo-paging>
+                        <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
+                    </dx-data-grid>
+                    <!--<h5>Attachments</h5>-->
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+<!--    </div>-->
+<!--</div>-->
+<!--<app-fileuploadalfresco #childd nameeeee="versionning" hidden></app-fileuploadalfresco>-->

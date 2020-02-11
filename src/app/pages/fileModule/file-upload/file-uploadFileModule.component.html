@@ -1,0 +1,137 @@
+<!--// form composed of an file field and a button-->
+
+<h4 style="text-align: center;font-family: 'Times New Roman';font-weight: bold;"></h4>
+<form [formGroup]="uploadForm">
+
+  <div class="container-fluid"  style="border-right: #0b2e13 solid 1px;border-radius: 7px;">
+    <div class="form-group">
+      <label for="Objet">Objet</label>
+      <input type="text" class="form-control" #obj [formControl]="Objet" id="Objet">
+        <small class="text-danger" *ngIf="form.get('Objet').touched && form.get('Objet').hasError('required')">veuillez saisir l'objet</small>
+    </div>
+
+    <div class="form-group">
+      <label for="Reference">Reference</label>
+      <input type="text" class="form-control" [formControl]="Reference" #ref id="Reference">
+        <small class="text-danger" *ngIf="form.get('Reference').touched && form.get('Reference').hasError('required')">veuillez saisir le Reference</small>
+    </div>
+
+    <div class="form-group">
+      <label for="Date">Date</label>
+      <input type="date" class="form-control" [formControl]="Date" #date id="Date">
+        <small class="text-danger" *ngIf="form.get('Date').touched && form.get('Date').hasError('required')">veuillez saisir le date</small>
+    </div>
+
+    <div class="form-group">
+      <label for="Organisation">Organisation</label>
+      <input type="text" class="form-control" [formControl]="Organisation" #org id="Organisation">
+        <small class="text-danger" *ngIf="form.get('Organisation').touched && form.get('Organisation').hasError('required')">veuillez saisir l'Organisation</small>
+    </div>
+
+    <div class="form-group">
+      <label for="Adresse">Adresse</label>
+      <input type="text" class="form-control" [formControl]="Adresse" #adr id="Adresse">
+        <small class="text-danger" *ngIf="form.get('Adresse').touched && form.get('Adresse').hasError('required')">veuillez saisir l'adresse</small>
+    </div>
+
+    <div class="form-group">
+      <label for="Expediteur">Expediteur</label>
+      <input type="text" class="form-control" [formControl]="Expediteur" #exp id="Expediteur">
+        <small class="text-danger" *ngIf="form.get('Expediteur').touched && form.get('Expediteur').hasError('required')">veuillez saisir l'expediteur</small>
+    </div>
+
+    <div class="form-group">
+      <label for="Corp">Corp</label>
+      <input type="text" class="form-control"[formControl]="Corp" #corp id="Corp">
+        <small class="text-danger" *ngIf="form.get('Corp').touched && form.get('Corp').hasError('required')">veuillez saisir le Corp</small>
+    </div>
+  </div>
+
+  <div class="container-fluid"  style="border-right: #0b2e13 solid 1px;border-radius: 7px;">
+
+
+
+      <div class="container-fluid" style="width: 100%;height: 10%;child-align: middle;">
+
+          <h6 style="font-family: 'Times New Roman';font-weight: bold;">List des Models:</h6>
+          <!--        <mat-form-field   style="width: 80%;font-family: 'Times New Roman';">-->
+          <!--          <mat-select placeholder="Toppings"  >-->
+          <!--            <mat-option  </mat-option>-->
+          <!--          </mat-select>-->
+          <!--        </mat-form-field>-->
+
+          <select class="mdb-select md-form colorful-select dropdown-primary" [formControl]="Model" #noderef (change)="telecharger(noderef.value)">
+              <option disabled selected>select a Model</option>
+              <option *ngFor="let  item of dataSource"  [value]="item.entry.id+'/'+item.entry.name">{{item.entry.name}}</option>
+          </select>
+          <small class="text-danger" *ngIf="form.get('Model').touched && form.get('Model').hasError('required')">veuillez saisir un model</small>
+          <br>
+          <br>
+          <br>
+          <br>
+
+          <div class="container-fluid" style="width: 100%;height: 10%;child-align: middle;" >
+              <button color="accent" type="submit" style="width: 80%;text-align: center;font-family: 'Times New Roman';" [hidden]="!result">Choose File</button>
+          </div>
+
+
+          <!--                     <button color="accent" type="submit" style="width: 80%;text-align: center;font-family: 'Times New Roman';">Upload File</button>-->
+
+
+
+      </div>
+       <div class="container-fluid" style="width: 100%;height: 10%;">
+         <br>
+<!--         <div>-->
+<!--             <input formControlName="document"  class="input-file" type="file" ng2FileSelect [uploader]="uploader" (change)="uploadSubmit(obj.value,ref.value,adr.value,org.value,date.value,corp.value,exp.value)" required/>-->
+<!--         </div>-->
+       </div>
+
+
+
+      <div>
+<!--          <input formControlName="document"   type="button"  (click)="remplirjson(obj.value,ref.value,adr.value,org.value,date.value,corp.value,exp.value,file.value)" required/>dvvfvf-->
+          <button type="button"  [disabled]="!form.valid" class="btn btn-default" style="background:#bce8f1;"  (click)="remplirjson(obj.value,ref.value,adr.value,org.value,date.value,corp.value,exp.value,noderef.value)">Remplir le modéle</button>
+      </div>
+      <br><br>
+
+<div>
+<!--    <input type="file"   class="btn btn-default" style="background:#bce8f1;"  (click)="chargerdansalfresco()">charger dans alfresco</input>-->
+
+<!--        <label for="file">Choose File</label>-->
+<!--        <input type="file"-->
+<!--               id="file",#input,class="file-upload-btn"-->
+<!--               (change)="chargerdansalfresco(input) ">-->
+    <input type="file" (change)="fileChange(input)" #input class="file-upload-btn"/>
+<!--    <button class="btn btn-primary" type="button" (click)="chargerdansalfresco(input)"><i class="fa fa-upload"></i></button>-->
+
+</div>
+        <!--// ------------------------------------------------------------------------------------------------------------------>
+       <br>
+       <br>
+       <br>
+       <br>
+        <!--// ------------------------------------------------------------------------------------------------------------------>
+
+
+
+       <!--// ------------------------------------------------------------------------------------------------------------------>
+
+
+       <!--// ------------------------------------------------------------------------------------------------------------------>
+
+
+
+  </div>
+
+</form>
+
+<ng-template #modalContent style="">
+    <div class="modal-body bg-gray" style="width:1366px;height: 630px;margin-left: -80%;">
+        <iframe id="blah" width='1366px' height='623px' frameborder='0' style=""></iframe>
+    </div>
+</ng-template>
+
+
+<footer> <h6 style="text-align: center;">Copyright by Walid Ayari</h6></footer>
+

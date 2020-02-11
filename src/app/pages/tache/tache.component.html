@@ -1,0 +1,187 @@
+<div class="tabs is-centered is-fullwidth" style="background-color: rgb(210,201,210);">
+  <div class="row">
+
+    <div class="col-md-4">
+      <h5 class="active" style="color: #875a7b;font-family: serif;margin-top: 2%;margin-left: 5%"> Tache
+         </h5>
+
+    </div>
+<!--    <div class="col-md-4">-->
+<!--      <p class="breadcrumb-item active" style="color: #875a7b;"></p>-->
+<!--    </div>-->
+<!--    <div class="col-md-4">-->
+<!--      <p class="breadcrumb-item active" style="color: #875a7b;"></p>-->
+<!--    </div>-->
+    <div class="col-md-4" style="padding-left: 20%;">
+
+      <a class="btn btn-white ">
+        <i class="fa fa-floppy-o fabar my-2 my-sm-0 " style="color: #008979;" title="Save "
+           (click)="onEnregistere()"></i>
+      </a>
+      <a class="btn btn-white float-left">
+        <i class="fa fa-ban fabar my-2 my-sm-0" style="color: #008979;" title="Ouvrir Parent" (click)="OuvrirParent()"></i>
+      </a>
+      <span >
+                <a class="btn btn-white ">
+                <i class="fa fa-id-card" aria-hidden="true" style="color: #008979;"  title="Ouvrir Dossier" (click)="OuvrirDossier()"></i>
+            </a>
+            </span>
+    </div>
+  </div>
+</div>
+<br>
+<form #f="ngForm">
+
+  <div class="row">
+    <div class="col-md-12">
+      <fieldset style="margin-top: -15px;">
+        <legend style="width: 12%; font-size: small">Général</legend>
+        <table width="100%;">
+          <tr>
+            <td>
+              <label>Objet</label>
+            </td>
+            <td>
+              <input type="text" class="form-control" id="objet" name="subject"
+                     [(ngModel)]="tache.subject" #subject="ngModel" >
+            </td>
+            <td>
+              <label>Instruction</label>
+            </td>
+            <td >
+              <input type="text" class="form-control" id="instruction" name="instruction"
+                     [(ngModel)]="tache.instruction" #instruction="ngModel"
+
+              >
+
+            </td>
+            <td>
+              <label>Délai</label>
+            </td>
+            <td >
+              <input type="text" class="form-control" id="référence" name="delai"
+                     [(ngModel)]="tache.delai" #delai="ngModel"
+                 >
+            </td>
+
+          </tr>
+          <tr>
+
+            <td>
+              <label>Initateur</label>
+            </td>
+            <td>
+              <input type="text" class="form-control" id="initiateur" name="initiateur"
+                     [(ngModel)]="tache.initiateur" #initiateur="ngModel"
+                     >
+            </td>
+            <td >
+              <label > Responsable</label>
+            </td>
+            <td >
+              <input type="text" class="form-control" id="responsable" name="responsable"
+                     [(ngModel)]="tache.responsable" #responsable="ngModel"
+                     >
+            </td>
+            <td>
+              <label style="padding-right:0.40rem;">Approbateur</label>
+            </td>
+            <td>
+              <input type="text" class="form-control" id="approbateur" name="approbateur"
+                     [(ngModel)]="tache.approbateur" #approbateur="ngModel"
+                    >
+            </td>
+          </tr>
+
+        </table>
+
+      </fieldset>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <fieldset style="margin-top: 0.5%;height: 96%;">
+        <legend style="width: 26%;font-size: small">Réponse</legend>
+
+
+        <div class="row">
+
+          <div class="col-md-12">
+            <!--              <textarea class="textinput" placeholder="Corps"></textarea>-->
+            <textarea id="body" name="body" class="textarea"
+                      [(ngModel)]="tache.reponse"></textarea>
+
+
+          </div>
+        </div>
+
+      </fieldset>
+    </div>
+    <div class="col-md-6">
+      <fieldset style="margin-top: 0.5%;">
+        <legend style="width: 26%;font-size: small">Pièces jointes</legend>
+        <div class="row">
+          <div class="col-md-12">
+            <app-fileuploadalfresco></app-fileuploadalfresco>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+      <fieldset style="margin-top: 0.5%;">
+      <legend style="width: 12%; font-size: small">Affectation & Annotations</legend>
+
+        <dx-data-grid
+                      id="gridAffectationAnnotation"
+                      [dataSource]="datasourceAffectationAnnotation"
+                      [columnAutoWidth]="true"
+                      [showRowLines]="true"
+                      [hoverStateEnabled]="true"
+                      [showBorders]="true"
+                      (onToolbarPreparing)="onToolbarPreparing($event)"
+                      [selectionFilter]="['id']"
+        >
+          <dxo-scrolling mode="virtual"></dxo-scrolling>
+          <dxi-column dataField="instruction" caption="Instruction"></dxi-column>
+          <dxi-column dataField="responsable" caption="Responsable"></dxi-column>
+          <dxi-column dataField="iniateur"
+                      caption="Iniateur(Approbateur)"></dxi-column>
+          <dxi-column dataField="delai" caption="Délai"></dxi-column>
+<!--          <dxi-column dataField="Actions" [allowFiltering]="false" [width]="170"-->
+<!--                      [allowSorting]="false" cellTemplate="cemplate"-->
+<!--                      alignment="center"></dxi-column>-->
+          <div *dxTemplate="let data of 'cemplate'">
+
+<!--            <i class="fa fa-trash" data-toggle="tooltip" title="effacer"-->
+<!--               (click)="deleteAnnotation(data.data)"></i>-->
+          </div>
+
+          <dxo-paging [pageSize]="5"></dxo-paging>
+          <dxo-pager [showPageSizeSelector]="true"
+                     [allowedPageSizes]="[5, 10, 20]"
+                     [showInfo]="true"></dxo-pager>
+        </dx-data-grid>
+
+      </fieldset>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+
+        <fieldset style="margin-top: 0.5%;width:  1089%;">
+          <legend style="width: 12%; font-size: small">Traitement</legend>
+            <button    class="btn btn-primary btn-rounded w-200p mb-1 mr-1 butttons-style"
+                       style="float: right;font-size: 85%;background-color: #16b1b3" (click)="ouvrirdossier()">
+              Ouvrir Dossier
+    </button>
+        </fieldset>
+      </div>
+
+    </div>
+
+
+  </div>
+</form>
+

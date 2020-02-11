@@ -1,0 +1,50 @@
+<dx-data-grid   #grid id="gridContainer"
+            [dataSource]="courrierDepartList"
+            keyExpr="id"
+            [allowColumnReordering]="true"
+            [allowColumnResizing]="true"
+            [showBorders]="true"
+            [rowAlternationEnabled]="true"
+            [remoteOperations]="true"
+            (onSelectionChanged)="selectedChanged($event,grid.instance.getSelectedRowsData()[0])"
+            [showColumnLines]="false"
+            [showRowLines]="false">
+            <dxo-scrolling mode="virtual" ></dxo-scrolling>
+            <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+            <dxo-load-panel [enabled]="true"></dxo-load-panel>
+            <dxo-selection mode="single"></dxo-selection>
+            <dxi-column dataField="identifiant" caption="Identifiant" [width]="150"></dxi-column>
+            <dxi-column dataField="subject" caption="Subject"> </dxi-column>
+            <dxi-column dataField="activityName" caption="Activité"> </dxi-column>
+            <dxi-column dataField="structureemettrice" caption="Expéditeur"></dxi-column>
+            <dxo-paging [pageSize]="20"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [visible]="true" [allowedPageSizes]="[20, 40, 60, 80, 100, 120, 140]" [showInfo]="true"></dxo-pager>
+            <dxo-sorting mode="multiple"></dxo-sorting>
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="Rechercher..."></dxo-search-panel>
+            <dxo-group-panel [visible]="false"></dxo-group-panel>
+            <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+
+</dx-data-grid>
+
+<dx-speed-dial-action icon="add" hint="Ajouter Dossier" (onClick)="addRow()"></dx-speed-dial-action>
+
+<div *ngIf="selectedRowIndex !== -1">
+    <span *ngIf="grid.instance.getSelectedRowsData()[0].activityid!=='null' && modedocumentCD ">
+    <dx-speed-dial-action
+            icon="edit"
+            hint="Modifier courrier Arriver"
+            (onClick)="onEdit(grid.instance.getSelectedRowsData()[0])">
+    </dx-speed-dial-action>
+   </span>
+    <span *ngIf="grid.instance.getSelectedRowsData()[0].activityid==='null' || modedocumentCD!==true ">
+    <dx-speed-dial-action
+            icon="fa fa-eye"
+            hint="View Dossier"
+            (onClick)="onShowDetails(grid.instance.getSelectedRowsData()[0])">
+    </dx-speed-dial-action>
+   </span>
+</div>
+
+

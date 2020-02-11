@@ -1,0 +1,729 @@
+<!--<div class="nav-form-bar">-->
+<!--  <div class="col-md-5">-->
+<!--    <p class="active"> Courrier Arrivée <br>-->
+
+<!--    </p>-->
+<!--  </div>-->
+
+<!--  <div class="col-md-4" >-->
+<!--    <p class="active" >-->
+
+<!--    </p>-->
+<!--  </div>-->
+
+<!--  <div class="col-md-1" >-->
+
+<!--    <a class="btn btn-white float-right" >-->
+<!--      <i class="fa fa-id-card btn-bar " title="Identifier"  ></i>-->
+<!--    </a>-->
+<!--  </div>-->
+<!--  <div class="col-md-1">-->
+<!--    <a class="btn btn-white float-right" >-->
+<!--      <i class="fa fa-floppy-o btn-bar " title="Save " ></i>-->
+<!--    </a>-->
+<!--  </div>-->
+<!--  <div class="col-md-1">-->
+<!--    <a class="btn btn-white float-left">-->
+<!--      <i class="fa fa-ban btn-bar" title="Cancel" ></i>-->
+<!--    </a>-->
+<!--  </div>-->
+<!--</div>-->
+<!------------------------------------------------------------------------------------------------------------------------------------------------->
+<form #f="ngForm">
+  <!--Courrier-->
+  <div class="row">
+    <div class="col-md-12" style="margin-bottom: 10px">
+      <div class="card border-2 spacial-card" style="margin-bottom: 10px">
+        <div class="card-header transparent border-0 text-muted " id="cardheader1">
+          <h5 class="marginh5">Général</h5>
+          <div class="widget-controls">
+            <a data-toggle="collapse" href="#collapseExample"><i class="fa fa-chevron-down"
+                                                                 data-target="#idcourrier"
+                                                                 id="chevron1"></i></a>
+            <!--<a data-widgster="collapse"class="transition"><i class="fa fa-chevron-up" data-target="#idcourrier"></i></a>-->
+          </div>
+        </div>
+        <div class="collapse show" id="collapseExample">
+          <div class="card-body pt-0 pl-4 pr-4 pb-4 widget-body">
+
+            <div class="row">
+              <fieldset class="col-md-12">
+                <legend>Courrier</legend>
+
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <div class="row">
+
+                      <div class="col-md-8 form-group">
+                        <div class="input-group-prepend">
+
+                          <span class="input-group-text"><i class="fa fa-opera"></i></span>
+
+                          <input type="text" class="form-control" placeholder="Objet"
+                                 id="objet" name="object"
+                                 [(ngModel)]="courrier.objet" #objectt="ngModel">
+
+                        </div>
+                      </div>
+                      <div class="col-md-4 form-group">
+                        <div class="input-group-prepend">
+                          <!--                                    <div class="col-md-1"><label for="datearriveee">Du:</label></div>-->
+                          <label style="font-size: 13px;">Du : </label>
+                          <span class="input-group-text"><i
+                                  class="fa fa-calendar"></i></span>
+                          <input id="datearriveee" class="form-control"
+                                 placeholder="yyyy-mm-dd" name="dp"
+                                 ngbDatepicker #p2="ngbDatepicker" #dA  style="width: 60%; font-size: 12px;">
+                          <div class="input-group-append" (click)="p2.toggle()">
+
+                          </div>
+
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <!-- urgent-->
+                      <div class="col-md-2">
+                        <input type="checkbox" name="typec" value="urgent">Urgent
+                      </div>
+                      <!--   Publique-->
+                      <div class="col-md-2" style="margin-left: 20px;">
+                        <input type="checkbox" name="privilege" value="public">Publique
+                      </div>
+
+
+                      <!--date -->
+
+
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </fieldset>
+
+
+            </div>
+            <div class="row">
+              <fieldset class="col-md-12">
+                <legend>Etat Actuel</legend>
+
+                <div class="panel panel-default">
+                  <div class="panel-body">
+
+                    <div class="row">
+
+                      <div class="col-md-1 form-group">
+                        <label>Responsable </label>
+                      </div>
+                      <div class="col-md-5 form-group">
+                        <input type="text" class="form-control"
+                               id="objet" name="object"
+                               [value]="responsable">
+
+                      </div>
+                      <div class="col-md-1 form-group">
+                        <label>Instruction</label>
+                      </div>
+                      <div class="col-md-5 form-group">
+                        <input type="text" class="form-control"
+                               id="objet" name="object"
+                               [(ngModel)]="courrier.objet" #objectt="ngModel">
+                      </div>
+                    </div>
+
+
+                    <div class="row">
+                      <!-- Activité-->
+                      <div class="col-md-1">
+                        <label>Activité</label>
+                      </div>
+                      <div class="col-md-5">
+                        <input type="text" class="form-control"
+                               id="objet" name="object"
+                               [(ngModel)]="courrier.objet" #objectt="ngModel">
+                      </div>
+                      <!--   Initié depuis-->
+                      <div class="col-md-1">
+                        <label>Initié depuis</label>
+                      </div>
+                      <div class="col-md-5">
+                        <input type="text" class="form-control"
+                               id="inite" name="inite">
+                      </div>
+
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </fieldset>
+
+
+            </div>
+            <div class="row">
+              <fieldset class="col-md-6">
+                <legend>Origine</legend>
+
+                <div class="panel panel-default">
+                  <div class="panel-body">
+
+                    <div class="row">
+
+                      <!--                            *************************Entité****************************-->
+
+
+                      <div class="form-group col-md-12">
+                        <label style="font-size: 13px;">Entité</label>
+                        <div class="input-group-prepend">
+                                                    <span class="input-group-text" >
+                                                    <i class="fa fa-users"></i>
+                                               </span>
+                          <select class="dropdown-toggle d-block"
+
+                                  style="border: 1px solid lightgrey;font: 400 13.3333px Arial;padding: 7px 9px 8px;border-radius: 3px;width:100%">
+                            <option  selected
+                                     style="color: lightgrey"  hidden [value]="Choisirunevaleur">
+                              Choisir
+                              une valeur
+                            </option>
+                            <option *ngFor="let item of tab">
+
+                            </option>
+                          </select>
+
+                        </div>
+                      </div>
+
+
+
+                    </div>
+
+
+                    <div class="row">
+                      <!--                        **************** Signataire *******************-->
+
+                      <div class="form-group col-md-12" >
+                        <label style="font-size: 13px;">Signataire</label>
+                        <div class="input-group-prepend">
+                                                    <span class="input-group-text" #nature1>
+                                    <i class="fa fa-user"></i>
+                                  </span>
+                          <select class="dropdown-toggle d-block"
+
+                                  style="border: 1px solid lightgrey;font: 400 13.3333px Arial;padding: 7px 9px 8px;border-radius: 3px;width:100%">
+                            <option  selected
+                                     style="color: lightgrey"  hidden [value]="Choisirunevaleur">
+                              Choisir
+                              une valeur
+                            </option>
+                            <option *ngFor="let item of tab">
+
+                            </option>
+                          </select>
+                        </div>
+
+
+
+                      </div>
+                    </div>
+
+
+
+                  </div>
+
+                </div>
+
+
+              </fieldset>
+              <br>
+              <fieldset class="col-md-6">
+                <legend>Destinataire</legend>
+
+                <div class="panel panel-default">
+                  <div class="panel-body">
+
+                    <div class="row">
+
+                      <!--                            *************************destinataire****************************-->
+
+
+                      <div class="form-group col-md-12" [hidden]="radioSelected1 !== ''">
+                        <label>Destinataire <span
+                                style="white-space:pre;color: red;font-weight: bold"> *</span></label>
+                        <div class="input-group-prepend">
+                                        <span class="input-group-text" (click)="onItemClick('Par Direction')" #nature1
+                                              style="width: 37px;margin-left: 0.05%;height: 35px;">
+                                            <i class="fa fa-sitemap"></i>
+                                        </span>
+                          <select class="dropdown-toggle d-block"
+
+                                  style="border: 1px solid lightgrey;font: 400 13.3333px Arial;padding: 7px 9px 8px;border-radius: 3px;width:100%;color: lightgrey;">
+                            <option hidden [value]="Choisirunevaleur" selected
+                                    style="color: lightgrey">
+                              Cliquer sur l'icone à gauche du typologie
+                            </option>
+
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group col-md-12"
+                           [hidden]="radioSelected1==='Par Direction' || radioSelected1===''">
+                        <label>Destinataire<span
+                                style="white-space:pre;color: red;font-weight: bold"> *</span></label>
+                        <div class="input-group-prepend">
+                                        <span class="input-group-text"
+                                              (click)="onItemClick('Par Direction')" #nature1
+                                              style="width: 37px;margin-left: 0.05%;height: 35px;">
+                                                <i class="fa fa-sitemap"></i>
+                                        </span>
+                          <select class="dropdown-toggle d-block"
+                                  [(ngModel)]="MYJSONACL.auteurDocument" name="select"
+                                  id="select"
+                                  style="border: 1px solid lightgrey;font: 400 13.3333px Arial;padding: 7px 9px 8px;border-radius: 3px;width:100%">
+                            <option hidden [value]="Choisirunevaleur" selected
+                                    style="color: lightgrey">
+                              Choisir
+                              une valeur
+                            </option>
+                            <option *ngFor="let item of tab">
+                              {{item}}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group col-md-12"
+                           [hidden]="radioSelected1==='Par Personne' || radioSelected1===''">
+                        <label>Destinataire</label>
+                        <div class="input-group-prepend">
+                                        <span class="input-group-text"
+                                              (click)="onItemClick('Par Personne')" #nature1
+                                              style="width: 37px;margin-left: 0.05%;height: 35px;">
+                                                <i class="fa fa-user"></i>
+                                        </span>
+                          <dx-drop-down-box
+                                  id="TreeView2"
+                                  [(value)]="treeBoxValue1"
+                                  valueExpr="ID"
+                                  displayExpr="name"
+                                  placeholder="Choisir une valeur"
+                                  [showClearButton]="true"
+                                  [dataSource]="treeDataSource1"
+                                  (onValueChanged)="syncTreeViewSelection1($event)"
+                                  [visible]="this.radioSelected1!=='Par Personne'"
+                                  style="width: 100%">
+                            <dxo-drop-down-options></dxo-drop-down-options>
+                            <div *dxTemplate="let data of 'content'">
+                              <dx-tree-view
+                                      [dataSource]="treeDataSource1"
+                                      dataStructure="plain"
+                                      keyExpr="ID"
+                                      parentIdExpr="headId"
+                                      selectionMode="single"
+                                      displayExpr="name"
+                                      [selectByClick]="true"
+                                      (onContentReady)="$event.component.selectItem(treeBoxValue1)"
+                                      (onItemSelectionChanged)="treeView_itemSelectionChanged1($event)"
+                                      [disabled]="modview">
+                              </dx-tree-view>
+                            </div>
+                          </dx-drop-down-box>
+                        </div>
+                      </div>
+
+                    </div>
+
+
+                    <div class="row">
+                      <!--                        **************** en copier *******************-->
+
+                      <div class="form-group col-md-12" [hidden]="radioSelected2 !== ''">
+                        <label>En-copie</label>
+                        <div class="input-group-prepend">
+                                <span class="input-group-text" (click)="onItemClick1('Par Direction')" #nature1
+                                      style="width: 37px;margin-left: 0.05%;height: 35px;">
+                                    <i class="fa fa-sitemap"></i>
+                                </span>
+
+                          <select class="dropdown-toggle d-block"
+
+                                  style="border: 1px solid lightgrey;font: 400 13.3333px Arial;padding: 7px 9px 8px;border-radius: 3px;width:100%;color: lightgrey;">
+                            <option  selected
+                                     style="color: lightgrey">
+                              Cliquer sur l'icone à gauche du typologie
+                            </option>
+
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group col-md-12"
+                           [hidden]="radioSelected2==='Par Direction' || radioSelected2===''">
+                        <label>En-copie</label>
+
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"
+                                  (click)="onItemClick1('Par Direction')" #nature1
+                                  style="width: 37px;margin-left: 0.05%;height: 35px;">
+                                <i class="fa fa-sitemap"></i>
+                            </span>
+
+                          <ejs-multiselect id="multiselect-checkbox" #checkbox
+                                           showselectall="true"
+                                           class="e-control e-multiselect e-lib"
+                                           style="width: 100%; border: 1px solid #dee1e3;border-radius: 3px;color: lightgrey;"
+                                           placeholder='  Choisir une valeur'
+                                           [dataSource]='Users3'
+                                           [fields]='checkFields'
+                                           [mode]='mode'>
+                          </ejs-multiselect>
+                        </div>
+                      </div>
+                      <div class="form-group col-md-12" *ngIf="testtree9"
+                           [hidden]="radioSelected2==='Par Personne' || radioSelected2===''">
+                        <label>En-copie</label>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"
+                                  (click)="onItemClick1('Par Personne')" #nature1
+                                  style="width: 37px;margin-left: 0.05%;height: 35px;">
+                                <i class="fa fa-user"> </i>
+                            </span>
+                          <dx-drop-down-box id="tree"
+                                            [(value)]="treeBoxValue2"
+                                            valueExpr="ID"
+                                            displayExpr="name"
+                                            placeholder="Choisir une valeur"
+                                            [showClearButton]="true"
+                                            [dataSource]="treeDataSource2"
+                                            (onValueChanged)="syncTreeViewSelection2($event)"
+                                            [visible]="this.radioSelected2=='Par Direction'"
+                                            style="width: 100%;" [disabled]="modview"
+
+                          >
+
+                            <dxo-drop-down-options height="300px"></dxo-drop-down-options>
+                            <div *dxTemplate="let data of 'content'">
+                              <dx-tree-view #treeView2ID
+
+                                            [dataSource]="treeDataSource2"
+                                            dataStructure="plain"
+                                            keyExpr="ID"
+                                            parentIdExpr="headId"
+                                            selectionMode="multiple"
+                                            showCheckBoxesMode="normal"
+                                            [selectNodesRecursive]="false"
+                                            displayExpr="name"
+                                            [selectByClick]="true"
+                                            (onContentReady)="syncTreeViewSelection2($event)"
+                                            (keyExprChange)="syncTreeViewSelection2($event)"
+                                            (onItemSelectionChanged)="treeView_itemSelectionChanged2($event)"
+                                            [width]="500" [disabled]="modview">
+                              </dx-tree-view>
+                            </div>
+                          </dx-drop-down-box>
+                        </div>
+                      </div>
+
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </fieldset>
+
+            </div>
+            <div class="row">
+              <fieldset class="col-md-12">
+                <legend>Corps</legend>
+
+                <div class="panel panel-default">
+                  <div class="panel-body">
+
+                    <div class="row">
+
+                      <div class="col-md-12">
+                        <!--              <textarea class="textinput" placeholder="Corps"></textarea>-->
+                        <textarea id="story" name="story" class="textarea">...</textarea>
+
+
+                      </div>
+                    </div>
+
+
+                  </div>
+
+                </div>
+
+              </fieldset>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Pièces Jointes en entrée-->
+  <div class="row">
+    <div class="col-md-12" style="margin-bottom: 10px">
+      <div widget class="card border-2">
+        <div class="card-header transparent border-0 text-muted" id="cardheader5">
+          <h5 class="marginh5">Traitement</h5>
+
+          <div class="widget-controls">
+            <a data-toggle="collapse" href="#collapsePj"><i class="fa fa-chevron-down"
+                                                            data-target="#idcourrier" id="chevron5"></i></a>
+
+          </div>
+        </div>
+        <div class="collapse " id="collapsePj">
+          <div class="card-body pt-0 pl-4 pr-4 pb-4 widget-bod">
+
+            <div class="row">
+              <fieldset class="col-md-6">
+                <legend>Acteur</legend>
+
+                <div class="panel panel-default">
+                  <div class="panel-body">
+
+                    <div class="row">
+
+                      <div class="form-group col-md-3">
+                        <label>Role</label>
+                      </div>
+                      <div class="form-group col-md-8">
+                        <div class="input-group-prepend">
+                          <dx-drop-down-box
+                                  id="TreeView2"
+                                  [(value)]="treeBoxValue1"
+                                  valueExpr="ID"
+                                  displayExpr="name"
+                                  placeholder="Choisir une valeur"
+                                  [showClearButton]="true"
+                                  [dataSource]="treeDataSource1"
+                                  (onValueChanged)="syncTreeViewSelection1($event)"
+                                  [visible]="this.radioSelected1!=='Par Personne'"
+                                  style="width: 100%">
+                            <dxo-drop-down-options></dxo-drop-down-options>
+                            <div *dxTemplate="let data of 'content'">
+                              <dx-tree-view
+                                      [dataSource]="treeDataSource1"
+                                      dataStructure="plain"
+                                      keyExpr="ID"
+                                      parentIdExpr="headId"
+                                      selectionMode="single"
+                                      displayExpr="name"
+                                      [selectByClick]="true"
+                                      (onContentReady)="$event.component.selectItem(treeBoxValue1)"
+                                      (onItemSelectionChanged)="treeView_itemSelectionChanged1($event)"
+                                      [disabled]="modview">
+                              </dx-tree-view>
+                            </div>
+                          </dx-drop-down-box>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-md-3">
+                        <label>Sous Couvert</label>
+                      </div>
+                      <div class="form-group col-md-8">
+                        <div class="input-group-prepend">
+                          <dx-drop-down-box
+                                  id="TreeView2"
+                                  [(value)]="treeBoxValue1"
+                                  valueExpr="ID"
+                                  displayExpr="name"
+                                  placeholder="Choisir une valeur"
+                                  [showClearButton]="true"
+                                  [dataSource]="treeDataSource1"
+                                  (onValueChanged)="syncTreeViewSelection1($event)"
+                                  [visible]="this.radioSelected1!=='Par Personne'"
+                                  style="width: 100%">
+                            <dxo-drop-down-options></dxo-drop-down-options>
+                            <div *dxTemplate="let data of 'content'">
+                              <dx-tree-view
+                                      [dataSource]="treeDataSource1"
+                                      dataStructure="plain"
+                                      keyExpr="ID"
+                                      parentIdExpr="headId"
+                                      selectionMode="single"
+                                      displayExpr="name"
+                                      [selectByClick]="true"
+                                      (onContentReady)="$event.component.selectItem(treeBoxValue1)"
+                                      (onItemSelectionChanged)="treeView_itemSelectionChanged1($event)"
+                                      [disabled]="modview">
+                              </dx-tree-view>
+                            </div>
+                          </dx-drop-down-box>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-md-3">
+                        <label>Co-Auteur</label>
+                      </div>
+                      <div class="form-group col-md-8">
+                        <div class="input-group-prepend">
+                          <dx-drop-down-box
+                                  id="TreeView2"
+                                  [(value)]="treeBoxValue1"
+                                  valueExpr="ID"
+                                  displayExpr="name"
+                                  placeholder="Choisir une valeur"
+                                  [showClearButton]="true"
+                                  [dataSource]="treeDataSource1"
+                                  (onValueChanged)="syncTreeViewSelection1($event)"
+                                  [visible]="this.radioSelected1!=='Par Personne'"
+                                  style="width: 100%">
+                            <dxo-drop-down-options></dxo-drop-down-options>
+                            <div *dxTemplate="let data of 'content'">
+                              <dx-tree-view
+                                      [dataSource]="treeDataSource1"
+                                      dataStructure="plain"
+                                      keyExpr="ID"
+                                      parentIdExpr="headId"
+                                      selectionMode="single"
+                                      displayExpr="name"
+                                      [selectByClick]="true"
+                                      (onContentReady)="$event.component.selectItem(treeBoxValue1)"
+                                      (onItemSelectionChanged)="treeView_itemSelectionChanged1($event)"
+                                      [disabled]="modview">
+                              </dx-tree-view>
+                            </div>
+                          </dx-drop-down-box>
+                        </div>
+                      </div>
+
+                    </div>
+
+
+                  </div>
+
+                </div>
+
+              </fieldset>
+              <fieldset class="col-md-6">
+                <legend>Pièces Jointes</legend>
+
+                <div class="panel panel-default">
+                  <div class="panel-body">
+
+                    <div class="row">
+
+                      <div class="col-md-12">
+                        <app-fileuploadalfresco></app-fileuploadalfresco>
+
+                      </div>
+                    </div>
+
+
+                  </div>
+
+                </div>
+
+              </fieldset>
+
+            </div>
+            <div class="row">
+
+            </div>
+            <div class="row">
+
+              <fieldset class="col-md-12">
+                <legend>Workflow</legend>
+
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-md-12 form-group">
+                        <label>Commentaire</label>
+                      </div>
+                      <div class="col-md-12 form-group">
+                        <input type="text" class="form-control" id="commentaire"
+                               name="commentaire"
+                               [(ngModel)]="courrier.objet" #objectt="ngModel">
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </fieldset>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--------------------------------------------------------Workflow----------------------------------------------------------------------------------------->
+
+  <!--Workflow-->
+  <div class="row">
+    <div class="col-md-12">
+      <div widget class="card border-2">
+        <div class="card-header transparent border-0 text-muted" id="cardheader6">
+          <h5 class="marginh5">Historique</h5>
+          <div class="widget-controls">
+            <a data-toggle="collapse" href="#collapseHistorique"><i class="fa fa-chevron-down"
+                                                                    data-target="#idcourrier"
+                                                                    id="chevron6"></i></a>
+          </div>
+        </div>
+        <div class="collapse" id="collapseHistorique">
+          <div class="card-body pt-0 pl-2 pr-2 pb-2 widget-body">
+            <div class="row">
+              <div class="form-group col-md-12">
+                <div class="input-group-prepend">
+
+                  <table class="table">
+                    <thead>
+                    <tr>
+                      <th scope="col">Task name</th>
+                      <th scope="col">Assignee</th>
+                      <th scope="col">Start Time</th>
+                      <th scope="col">End Time</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!--<tr *ngFor="let h of copiehistoric">-->
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="buttons-group col-md-2 ml-auto">
+
+      <button type="button"
+              class="btn btn-primary btn-rounded w-200p mb-1 mr-1 butttons-style" id="buttonid"
+              (click)="sauvgarder(f)">envoyer
+      </button>
+
+
+    </div>
+  </div>
+
+
+</form>
+
+

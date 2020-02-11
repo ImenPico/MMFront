@@ -1,0 +1,35 @@
+<form name="form">
+    <div class="modal-header" style="background: #ebe8e8 ;color: black">
+      
+      <h4 class="modal-title"> Ajout d'un nouveau dossier </h4>
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+              (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-lg-12 mb-4">
+                <div widget class="card border-0 box-shadow">
+                    <div class="card-header transparent border-0 text-muted">
+                        <h5 class="mb-0">Données de dossier</h5>
+                    </div>
+                    <div class="card-body pt-0 widget-body">
+                        <br/>
+                            <table style="width:100%">
+                                <tr>
+                                    <td>
+                                        <label>Nom du dossier</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="foldaName" #foldaName/>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-primary" type="button" (click)="onAddFolder(foldaName.value)">Ajouter</button>
+                                    </td>
+                                </tr>
+                            </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,152 @@
+<!--<div class="row d-flex justify-content-center">-->
+<!--<div *ngFor="let project of projects" class="col-lg-6   mb-5">-->
+<!--<div class="card border-0 box-shadow">-->
+<!--<img class="card-img-top w-100" [src]="project.image" alt="1">-->
+<!--<div class="card-body"> -->
+<!--<h4 class="card-title text-center">{{project.name}}</h4>-->
+<!--<p class="card-text text-justify">{{project.desc}}</p>-->
+<!--</div>-->
+<!--<div class="card-footer py-3">-->
+<!--<a href="javascript:void(0);" class="mr-2 text-gray">-->
+<!--<i class="fa fa-share-alt"></i>-->
+<!--</a>-->
+<!--<a href="javascript:void(0);" class="mr-2 text-gray">-->
+<!--<i class="fa fa fa-heart-o mr-2"></i>{{project.followers}}-->
+<!--</a>-->
+<!--<a href="javascript:void(0);" class="text-info float-right">-->
+<!--Live Preview <i class="fa fa-photo ml-1"></i>-->
+<!--</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+
+
+<div class="row d-flex justify-content-left" >
+    <div class="col-lg-9 ">
+        <div class="card border-0 box-shadow" [hidden]="variableUserprofil">
+            <!--<img class="card-img-top w-100" [src]="project.image" alt="1">-->
+            <div class="card-body" >
+
+                <!--<app-modalFileModule></app-modalFileModule>-->
+
+
+
+                <!--<div class="modal-body">-->
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-4 ">
+                            <div style="float: left"><h5>Scanner</h5></div><div style="float: left"><p style="white-space:pre;color: red;font-weight: bold">  *</p></div>
+                            <select  style="width: 200px" [formControl]="namescanner" class="form-control validation-field"   #selectedScannerName>
+                                <option value="" selected disabled hidden>Choisir Un Scanner</option>
+                                <option  *ngFor="let item of listParamscanner" [value]="item">{{item}}</option>
+                            </select>
+                            <small class="text-danger" *ngIf="form.get('namescanner').touched && form.get('namescanner').hasError('required')">veuillez saisir le nom du scanner</small>
+                        </div>
+
+                        <div class="col-4 ">
+                            <div style="float: left"><h5>Type du document</h5></div><div style="float: left"><p style="white-space:pre;color: red;font-weight: bold">  *</p></div>
+                            <select  style="width: 200px" class="form-control validation-field" [formControl]="Typedudocument"  #fileType>
+                                <option value="" selected disabled hidden>Choisir Une Valeur</option>
+                                <option value="pdf">PDF</option>
+                            </select>
+                            <small class="text-danger" *ngIf="form.get('Typedudocument').touched && form.get('Typedudocument').hasError('required')">veuillez saisir le type du document</small>
+
+                        </div>
+                    </div>
+                </div>
+                <!--/*****/-->
+
+
+                <div class="form-group" >
+                    <div class="row">
+                        <div class="col-4">
+                            <div style="float: left"><label>Résolution</label></div><div style="float: left"><p style="white-space:pre;color: red;font-weight: bold">  *</p></div>
+
+                            <!--<label>Résolution</label>-->
+                            <select   style="width: 200px"  [formControl]="resolution" class="form-control validation-field"  #SetResolutionInt>
+                                <option value="" selected disabled hidden>Choisir Une Valeur</option>
+
+                                <option *ngFor="let item of Resolution"  [value]="item">{{item}}</option>
+
+
+
+
+                            </select>
+                            <small class="text-danger" *ngIf="form.get('resolution').touched && form.get('resolution').hasError('required')">veuillez saisir la résolution</small>
+
+                        </div>
+                        <div class="col-4">
+                            <div style="float: left"><label>Taille du fichier</label></div><div style="float: left"><p style="white-space:pre;color: red;font-weight: bold">  *</p></div>
+
+                            <!--<label>Taille du fichier</label>-->
+                            <select  [formControl]="tailledufichier" style="width: 200px" class="form-control validation-field"  required="true" #SetPaperSize >
+                                <option value="" selected disabled hidden>Choisir Une Valeur</option>
+                                <option value="20" >A1</option>
+                                <option value="21">A2</option>
+                                <option value="11" >A3</option>
+                                <option value="1" >A4</option>
+
+
+                            </select>
+                            <small class="text-danger" *ngIf="form.get('tailledufichier').touched && form.get('tailledufichier').hasError('required')">veuillez saisir la taille du fichier</small>
+
+                        </div>
+
+
+
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+                    <h5>Mode</h5>
+                    <div class="row">
+                        <div class="col-2">
+                            <input type="radio" name="radio" id="Couleur" value="2" [checked]="true" >
+                            <label for="Couleur" style="white-space:pre;">   Couleur</label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" name="radio" id="gris"  value="1" >
+                            <label for="gris" style="white-space:pre;">   Gris</label>
+                        </div>
+                        <div class="col-2">
+                            <input type="radio" name="radio" id="Noir et Blanc" value="0"  >
+                            <label for="Noir et Blanc" style="white-space:pre;">     Noir et Blanc</label>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-3">
+                            <h5>Type</h5>
+                            <input type="checkbox" name="radio1" id="radio1" >
+                            <label style="white-space:pre;">   RectoVerso</label>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-footer ">
+                <!--<div class="justify-content-lg-end ">-->
+                <button [disabled]="!form.valid" type="button" class="btn btn-default" style="background:#bce8f1;float: right;"
+                        (click)="save_user_profile(selectedScannerName.value,fileType.value,SetResolutionInt.value,SetPaperSize.value)">Save
+                </button>
+                <!--</div>-->
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--</div>-->

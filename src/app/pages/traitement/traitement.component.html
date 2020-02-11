@@ -1,0 +1,778 @@
+<div class="tabs is-centered is-fullwidth" style="background-color: rgb(210,201,210);" >
+  <div class="row col-md-12">
+    <div class="col-md-4">
+      <!--            <p class="active"  style="color: #875a7b;font-family: fantasy" > {{identif1}}{{compteur}}</p>-->
+
+      <p class="breadcrumb-item active" style="color: #875a7b;">{{courrierArrive.identifiant}}</p>
+    </div>
+    <div class="col-md-5">
+      <h5 class="active" style="color: #875a7b;font-family: Arial;margin-top: 2%;margin-left: 20%"> Courrier
+        Arriver
+      </h5>
+    </div>
+    <div class="col-md-3" *ngIf="ajout==='newcourrierArriver'">
+      <a class="btn btn-white ">
+        <i class="fa fa-id-card" aria-hidden="true" style="color: #008979;" (click)="reference()"></i>
+      </a>
+      <a class="btn btn-white ">
+        <i class="fa fa-floppy-o fabar my-2 my-sm-0 " style="color: #008979;" title="Save "
+           (click)="onEnregistere()"></i>
+      </a>
+      <a class="btn btn-white float-left">
+        <i class="fa fa-ban fabar my-2 my-sm-0" style="color: #008979;" title="Cancel" (click)="onCancel()"></i>
+      </a>
+
+    </div>
+  </div>
+</div>
+<br>
+<form #f="ngForm">
+  <!--Courrier orgine corps Pj-->
+  <div class="row">
+    <div class="col-md-12">
+
+
+      <table style="width: 100%">
+        <tr>
+          <fieldset>
+            <legend style=" width: 9%;">Courrier</legend>
+
+            <table style="width:100%">
+              <tr>
+                <td>{{courrierArrive.subject}}</td>
+              </tr>
+              <tr>
+                <td style="width: 23%">
+                  <table>
+                    <tr>
+
+                      <td>
+                        <label style="padding-right:0.40rem;"> Origine
+                          :</label>
+                      </td>
+                      <td colspan=5 style="padding: 1%" >
+                        <input type="text" class="form-control" id="emetteurorganisme"
+                               name="emetteurorganisme"
+                               [(ngModel)]="courrierArrive.emetteurorganisme"
+                               #emetteurorganisme="ngModel" style="height: calc(1em + 0.75rem + 2px); width: 215%;" readonly>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <label style="padding-right:0.40rem;"> Destination
+                          :</label>
+                      </td>
+                      <td colspan=5 style="padding: 1%">
+                        <input type="text" class="form-control" id="destination"
+                               name="destination"
+                               [(ngModel)]="courrierArrive.destination"
+                               #destination="ngModel"style="height: calc(1em + 0.75rem + 2px); width: 215%;" readonly>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label style="padding-right:0.40rem;">En Copier
+                          :</label>
+                      </td>
+                      <td colspan=5 style="padding: 1%">
+                        <input type="text" class="form-control" id="encopiep"
+                               name="encopief"
+                               [(ngModel)]="courrierArrive.encopiep"
+                               #encopiep="ngModel" style="height: calc(1em + 0.75rem + 2px); width: 215%;" readonly>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+                <td style="width: 23%">
+                  <table>
+                    <tr>
+
+                      <td>
+                        <label style="padding-right:0.40rem;"> Nature
+                          :</label>
+                      </td>
+                      <td colspan=5 style="padding: 1%;">
+                        <input type="text" class="form-control" id="nature"
+                               name="nature"
+                               [(ngModel)]="courrierArrive.nature"
+                               #nature="ngModel" style="height: calc(1em + 0.75rem + 2px); width: 215%;" readonly>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label style="padding-right:0.40rem;"> Type:
+                        </label>
+                      </td>
+                      <td colspan=5 style="padding: 1%;">
+                        <input type="text" class="form-control" id="categorie"
+                               name="categorie"
+                               [(ngModel)]="courrierArrive.categorie"
+                               #categorie="ngModel" style="height: calc(1em + 0.75rem + 2px); width: 215%;" readonly>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label style="padding-right:0.40rem;">Réf
+                          Ext:</label>
+                      </td>
+                      <td colspan=5 style="padding: 1%;">
+                        <input type="text" class="form-control" id="refexterne"
+                               name="refexterne"
+                               [(ngModel)]="courrierArrive.refexterne"
+                               #refexterne="ngModel" style="height: calc(1em + 0.75rem + 2px); width: 215%;" readonly>
+                      </td>
+                    </tr>
+
+                  </table>
+                </td>
+                <td style="width: 23%">
+                  <table>
+                    <tr>
+
+                      <td>
+                        <label style="padding-right:0.40rem;"> D.Courrier
+                          :</label>
+                      </td>
+                      <td colspan=5 style="padding: 1%;">
+                        <input type="text" class="form-control" id="datecourrier"
+                               name="datecourrier"
+                               [(ngModel)]="courrierArrive.datecourrier"
+                               #datecourrier="ngModel" style="height: calc(1em + 0.75rem + 2px); width: 215%;" readonly>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label style="padding-right:0.40rem;">
+                          D.Arrivée:</label>
+                      </td>
+                      <td colspan=5 style="padding: 1%;">
+                        <input type="text" class="form-control" id="datearrivee"
+                               name="datearrivee"
+                               [(ngModel)]="courrierArrive.datearrivee"
+                               #datearrivee="ngModel" style="height: calc(1em + 0.75rem + 2px); width: 215%;" readonly>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <label style="padding-right:0.40rem;">Rép
+                          sur:</label>
+                      </td>
+                      <td colspan=5 style="padding: 1%;">
+                        <input type="text" class="form-control" id="refreponse"
+                               name="refreponse"
+                               [(ngModel)]="courrierArrive.refreponse"
+                               #refreponse="ngModel" style="height: calc(1em + 0.75rem + 2px); width: 215%;" readonly>
+                      </td>
+                    </tr>
+
+                  </table>
+                </td>
+              </tr>
+            </table>
+
+          </fieldset>
+        </tr>
+      </table>
+
+      <!--                        etat actuel-->
+
+      <table style="width: 100%">
+        <tr>
+
+          <fieldset>
+            <legend>Etat Actuel</legend>
+
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <table style="width: 100%">
+                  <tr>
+
+                    <td>
+                      <label>Resp:</label>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control"
+                             id="responsable" name="responsable"
+                             [value]="courrierArrive.responsable">
+
+                    </td>
+                    <td>
+                      <label>Instruction:</label>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control"
+                             id="instruction" name="instruction" [(ngModel)]="courrierArrive.instructionresponsable" #instructionresponsable="ngModel">
+                    </td>
+                    <td>
+                      <label>Activité :</label>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control"
+                             id="activityName" name="activityName"
+                             [(ngModel)]="courrierArrive.activityName" #activityName="ngModel">
+                    </td>
+                    <td>
+                      <!--   Initié depuis-->
+                      <label>Initié depuis:</label>
+                    </td>
+                    <td>
+                      <input type="text" class="form-control"
+                             id="inite" name="inite">
+                    </td>
+                  </tr>
+                  <!-- Activité-->
+                  <!--                                                <tr>-->
+                  <!--                                                    <td>-->
+                  <!--                                                        <label>Activité :</label>-->
+                  <!--                                                    </td>-->
+                  <!--                                                    <td>-->
+                  <!--                                                        <input type="text" class="form-control"-->
+                  <!--                                                               id="objet" name="object"-->
+                  <!--                                                               [(ngModel)]="courrier.objet" #objectt="ngModel">-->
+                  <!--                                                    </td>-->
+                  <!--                                                    <td style="padding: 1%;">-->
+                  <!--                                                        &lt;!&ndash;   Initié depuis&ndash;&gt;-->
+                  <!--                                                        <label>Initié depuis:</label>-->
+                  <!--                                                    </td>-->
+                  <!--                                                    <td>-->
+                  <!--                                                        <input type="text" class="form-control"-->
+                  <!--                                                               id="inite" name="inite">-->
+                  <!--                                                    </td>-->
+                  <!--                                                </tr>-->
+
+                </table>
+
+              </div>
+
+            </div>
+
+          </fieldset>
+
+        </tr>
+      </table>
+      <fieldset class="row">
+        <legend style=" width: 9%;">Pièces Jointes</legend>
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+
+            <div class="col-md-12">
+              <app-blankFileModule></app-blankFileModule>
+
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </fieldset>
+
+
+
+
+      <!--   corps-->
+
+      <fieldset class="col-md-12">
+        <legend style=" width: 9%;">Corps</legend>
+
+        <div class="row">
+
+          <div class="col-md-12">
+            <!--              <textarea class="textinput" placeholder="Corps"></textarea>-->
+            <textarea id="body" name="body" class="textarea" [(ngModel)]="courrierArrive.body">...</textarea>
+
+
+          </div>
+        </div>
+
+      </fieldset>
+
+
+
+    </div>
+  </div>
+
+
+  <!--Annotation-->
+  <div class="row">
+    <!--Destination-->
+    <div class="col-md-12 " style="margin-bottom: 10px">
+
+
+
+
+      <!--                           responsableCourriers                            -->
+
+
+      <fieldset class="col-md-12">
+        <legend style=" width: 9%;">Destination Courrier</legend>
+
+
+
+
+        <!--            *************************   Instruction  *************************-->
+        <table style="width: 100%;">
+          <tr>
+            <td></td><td></td>
+            <td>
+              <input type="checkbox" name="rep" value="rep" checked>Nécessite réponse
+            </td>
+            <td style="padding: 1%"><input type="checkbox" name="delai" value="Car"
+                                           (change)="changecked($event)">Délai
+            </td>
+
+            <td *ngIf="elementcheck===true" class="input-group spinner">
+              <input type="number" value="0" max="99" min="0">
+              <label style="margin-top: -35%; margin-right: 96%;">22/01/2020</label>
+            </td>
+            <!--                                            <td *ngIf="elementcheck===true">-->
+            <!--                                                <label>jours 22/01/2020</label>-->
+
+            <!--                                            </td>-->
+
+          </tr>
+        </table>
+        <div class="row">
+          <div class="col-md-1" style="margin-right:-1;">
+            <label>Instruction</label>
+          </div>
+          <div class="col-md-5">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-tags"></i></span>
+
+              <select class="form-control" id="instruction1" name="instructionresponsable"
+              >
+                <option value="Catégorie" selected="true" [disabled]="true">
+                  Instruction
+                </option>
+                <option>Instruction</option>
+                <option>Instruction1</option>
+
+
+              </select>
+            </div>
+          </div>
+          <!--            *************************   Fin Instruction  *************************-->
+
+          <!--**********************************************Affecter==en copier************************-->
+          <div class="col-md-1">
+            <label>Affecter</label>
+          </div>
+          <div class="col-md-5" [hidden]="radioSelectedAffecter2 !== ''">
+            <div class="input-group-prepend">
+                                <span class="input-group-text" (click)="onItemClickaffecter1('Par Direction')" #nature1
+                                      style="width: 37px;margin-left: 0.05%;height: 35px;">
+                                    <i class="fa fa-sitemap"></i>
+                                </span>
+
+              <select class="dropdown-toggle d-block"
+
+                      style="border: 1px solid lightgrey;font: 400 13.3333px Arial;padding: 7px 9px 8px;border-radius: 3px;width:100%;color: lightgrey;">
+                <option hidden [value]="Choisirunevaleur" selected
+                        style="color: lightgrey">
+                  Cliquer sur l'icone à gauche du typologie
+                </option>
+
+              </select>
+            </div>
+          </div>
+          <div class=" col-md-5"
+               [hidden]="radioSelectedAffecter2==='Par Direction' || radioSelectedAffecter2===''">
+            <div class="input-group-prepend">
+                            <span class="input-group-text"
+                                  (click)="onItemClickaffecter1('Par Direction')" #nature1
+                                  style="width: 37px;margin-left: 0.05%;height: 35px;">
+                                <i class="fa fa-sitemap"></i>
+                            </span>
+
+              <ejs-multiselect id="multiselect-checkboxAffecter" #checkboxAffect
+                               showselectall="true"
+                               class="e-control e-multiselect e-lib"
+                               style="width: 100%; border: 1px solid #dee1e3;border-radius: 3px;color: lightgrey;"
+                               placeholder='  Choisir une valeur'
+                               [dataSource]='Users3'
+                               [fields]='checkFields'
+                               [mode]='mode'>
+              </ejs-multiselect>
+            </div>
+          </div>
+          <div class="col-md-5" *ngIf="testtree9"
+               [hidden]="radioSelectedAffecter2==='Par Personne' || radioSelectedAffecter2===''">
+            <div class="input-group-prepend">
+                            <span class="input-group-text"
+                                  (click)="onItemClickaffecter1('Par Personne')" #nature1
+                                  style="width: 37px;margin-left: 0.05%;height: 35px;">
+                                <i class="fa fa-user"> </i>
+                            </span>
+              <dx-drop-down-box id="tree1"
+                                [(value)]="treeBoxValue2"
+                                valueExpr="ID"
+                                displayExpr="name"
+                                placeholder="Choisir une valeur"
+                                [showClearButton]="true"
+                                [dataSource]="treeDataSource2"
+                                (onValueChanged)="syncTreeViewSelection2($event)"
+                                [visible]="this.radioSelectedAffecter2=='Par Direction'"
+                                style="width: 100%;" [disabled]="modview"
+
+              >
+
+                <dxo-drop-down-options height="300px"></dxo-drop-down-options>
+                <div *dxTemplate="let data of 'content'">
+                  <dx-tree-view #treeView1ID
+
+                                [dataSource]="treeDataSource2"
+                                dataStructure="plain"
+                                keyExpr="ID"
+                                parentIdExpr="headId"
+                                selectionMode="multiple"
+                                showCheckBoxesMode="normal"
+                                [selectNodesRecursive]="false"
+                                displayExpr="name"
+                                [selectByClick]="true"
+                                (onContentReady)="syncTreeViewSelection2($event)"
+                                (keyExprChange)="syncTreeViewSelection2($event)"
+                                (onItemSelectionChanged)="treeView_itemSelectionChanged2($event)"
+                                [width]="500" [disabled]="modview">
+                  </dx-tree-view>
+                </div>
+              </dx-drop-down-box>
+            </div>
+          </div>
+        </div>
+        <!--**********************************************Fin Affecter************************-->
+
+        <!--                        **************** en copier *******************-->
+        <div class="row">
+          <div class="col-md-1">
+            <label style="margin-right: -13%;">En-copie</label>
+          </div>
+          <div class=" col-md-11" [hidden]="radioSelected2 !== ''">
+            <div class="input-group-prepend">
+                                <span class="input-group-text" (click)="onItemClick1('Par Direction')" #nature1
+                                      style="width: 37px;margin-left: 0.05%;height: 35px;">
+                                    <i class="fa fa-sitemap"></i>
+                                </span>
+
+              <select class="dropdown-toggle d-block"
+
+                      style="border: 1px solid lightgrey;font: 400 13.3333px Arial;padding: 7px 9px 8px;border-radius: 3px;width:100%;color: lightgrey;">
+                <option hidden [value]="Choisirunevaleur" selected
+                        style="color: lightgrey">
+                  Cliquer sur l'icone à gauche du typologie
+                </option>
+
+              </select>
+            </div>
+          </div>
+          <div class="col-md-11"
+               [hidden]="radioSelected2==='Par Direction' || radioSelected2===''">
+
+            <div class="input-group-prepend">
+                            <span class="input-group-text"
+                                  (click)="onItemClick1('Par Direction')" #nature1
+                                  style="width: 37px;margin-left: 0.05%;height: 35px;">
+                                <i class="fa fa-sitemap"></i>
+                            </span>
+
+              <ejs-multiselect id="multiselect-checkbox" #checkbox
+                               showselectall="true"
+                               class="e-control e-multiselect e-lib"
+                               style="width: 100%; border: 1px solid #dee1e3;border-radius: 3px;color: lightgrey;"
+                               placeholder='  Choisir une valeur'
+                               [dataSource]='Users3'
+                               [fields]='checkFields'
+                               [mode]='mode'>
+              </ejs-multiselect>
+            </div>
+          </div>
+          <div class="col-md-11" *ngIf="testtree9"
+               [hidden]="radioSelected2==='Par Personne' || radioSelected2===''">
+            <div class="input-group-prepend">
+                            <span class="input-group-text"
+                                  (click)="onItemClick1('Par Personne')" #nature1
+                                  style="width: 37px;margin-left: 0.05%;height: 35px;">
+                                <i class="fa fa-user"> </i>
+                            </span>
+              <dx-drop-down-box id="tree"
+                                [(value)]="treeBoxValue1"
+                                valueExpr="ID"
+                                displayExpr="name"
+                                placeholder="Choisir une valeur"
+                                [showClearButton]="true"
+                                [dataSource]="treeDataSource1"
+                                (onValueChanged)="syncTreeViewSelectioncopier($event)"
+                                [visible]="this.radioSelected2=='Par Direction'"
+                                style="width: 100%;" [disabled]="modview"
+
+              >
+
+                <dxo-drop-down-options height="300px"></dxo-drop-down-options>
+                <div *dxTemplate="let data of 'content'">
+                  <dx-tree-view #treeView2ID
+
+                                [dataSource]="treeDataSource1"
+                                dataStructure="plain"
+                                keyExpr="ID"
+                                parentIdExpr="headId"
+                                selectionMode="multiple"
+                                showCheckBoxesMode="normal"
+                                [selectNodesRecursive]="false"
+                                displayExpr="name"
+                                [selectByClick]="true"
+                                (onContentReady)="syncTreeViewSelectioncopier($event)"
+                                (keyExprChange)="syncTreeViewSelectioncopier($event)"
+                                (onItemSelectionChanged)="treeView_itemSelectionChangedcopier($event)"
+                                [width]="500" [disabled]="modview">
+                  </dx-tree-view>
+                </div>
+              </dx-drop-down-box>
+            </div>
+          </div>
+
+        </div>
+
+
+      </fieldset>
+      <!--                         Annotation                         -->
+      <fieldset class="col-md-12">
+        <legend style=" width: 9%;">Annotation</legend>
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <table style="width: 100%">
+              <tr>
+                <td></td><td></td>
+                <td>
+                  <input type="checkbox" name="delai" value="Car"
+                         (change)="changeckeddelaiAnnotation($event)">Délai
+                </td>
+                <td *ngIf="elementcheckannotation===true" class="input-group spinner">
+                  <input type="number" value="0" max="99" min="0">
+                </td>
+                <td *ngIf="elementcheckannotation===true">jours 23/01/2020
+                </td>
+                <td style="padding: 1%">
+                  <input type="checkbox" name="rep" value="rep" checked>Nécessite
+                  Approbation
+                </td>
+
+              </tr>
+            </table>
+            <!--            *************************   Instruction2  *************************-->
+            <div class="row">
+              <div class="col-md-1">
+                <label>Instruction</label>
+              </div>
+              <div class="col-md-5">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fa fa-tags"></i></span>
+
+                  <select class="form-control" id="instruction2" name="instructionresponsable"
+                          [(ngModel)]="MYJSONinstruction.instruction"
+                          #instruction="ngModel">
+                    <option value="Catégorie" selected="true" [disabled]="true">
+                      Instruction
+                    </option>
+                    <option>Instruction</option>
+                    <option>Instruction1</option>
+
+
+                  </select>
+                  <!--                                                <ng-select [multiple]="true" [(ngModel)]="selectedinstruction">-->
+                  <!--                                                    <ng-option *ngFor="let inst of instructionn" [value]="inst.id" >{{inst.name}}</ng-option>-->
+                  <!--                                                    <ng-option [value]="'custom'">Custom</ng-option>-->
+                  <!--                                                </ng-select>-->
+                </div>
+              </div>
+              <!--                        **************** Acteur=responsable *******************-->
+              <div class="col-md-1">
+                <label>Acteur</label>
+              </div>
+              <div class="col-md-5" [hidden]="radioSelectedAffecter1 !== ''">
+                <div class="input-group-prepend">
+                                        <span class="input-group-text" (click)="onItemClickaffecter('Par Direction')"
+                                              #nature1
+                                              style="width: 37px;margin-left: 0.05%;height: 35px;">
+                                            <i class="fa fa-sitemap"></i>
+                                        </span>
+                  <select class="dropdown-toggle d-block"
+
+                          style="border: 1px solid lightgrey;font: 400 13.3333px Arial;padding: 7px 9px 8px;border-radius: 3px;width:100%;color: lightgrey;">
+                    <option hidden [value]="Choisirunevaleur" selected
+                            style="color: lightgrey">
+                      Cliquer sur l'icone à gauche du typologie
+                    </option>
+
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-5"
+                   [hidden]="radioSelectedAffecter1==='Par Direction' || radioSelectedAffecter1===''">
+                <div class="input-group-prepend">
+                                        <span class="input-group-text"
+                                              (click)="onItemClickaffecter('Par Direction')" #nature1
+                                              style="width: 37px;margin-left: 0.05%;height: 35px;">
+                                                <i class="fa fa-sitemap"></i>
+                                        </span>
+                  <select class="dropdown-toggle d-block"
+                          [(ngModel)]="MYJSONActeur.auteurDocument" name="acteur"
+                          id="select"
+                          style="border: 1px solid lightgrey;font: 400 13.3333px Arial;padding: 7px 9px 8px;border-radius: 3px;width:100%">
+                    <option hidden [value]="Choisirunevaleur" selected
+                            style="color: lightgrey">
+                      Choisir
+                      une valeur
+                    </option>
+                    <option *ngFor="let item of tab">
+                      {{item}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-5"
+                   [hidden]="radioSelectedAffecter1==='Par Personne' || radioSelectedAffecter1===''">
+                <div class="input-group-prepend">
+                                        <span class="input-group-text"
+                                              (click)="onItemClickaffecter('Par Personne')" #nature1
+                                              style="width: 37px;margin-left: 0.05%;height: 35px;">
+                                                <i class="fa fa-user"></i>
+                                        </span>
+                  <dx-drop-down-box
+                          id="TreeViewActeur"
+                          [(value)]="treeBoxValueActeur"
+                          valueExpr="ID"
+                          displayExpr="name"
+                          placeholder="Choisir une valeur"
+                          [showClearButton]="true"
+                          [dataSource]="treeDataSource3"
+                          (onValueChanged)="syncTreeViewSelectionActeur($event)"
+                          [visible]="radioSelectedAffecter1!=='Par Personne'"
+                          style="width: 100%">
+                    <dxo-drop-down-options></dxo-drop-down-options>
+                    <div *dxTemplate="let data of 'content'">
+                      <dx-tree-view
+                              #treeViewActeur
+                              [dataSource]="treeDataSource3"
+                              dataStructure="plain"
+                              keyExpr="ID"
+                              parentIdExpr="headId"
+                              selectionMode="single"
+                              displayExpr="name"
+                              [selectByClick]="true"
+                              (onContentReady)="$event.component.selectItem(treeBoxValueActeur)"
+                              (onItemSelectionChanged)="treeView_itemSelectionChangedActeur($event)"
+                              [disabled]="modview">
+                      </dx-tree-view>
+                    </div>
+                  </dx-drop-down-box>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-3 ml-auto" style="margin-right:-249px">
+                <button type="button"
+                        class="btn btn-info btn-sm butttons-style" style="margin-top:4px;"
+                        id="buttonid1"
+                        [hidden]="true">Ajouter Annotation
+                </button>
+              </div>
+
+              <div class="col-md-12" style="margin-top:-1px">
+                <dx-data-grid
+                        #grid id="gridContainer"
+                        [dataSource]="datasourceAnnotation"
+                        [columnAutoWidth]="true"
+                        [showRowLines]="true"
+                        [hoverStateEnabled]="true"
+                        [showBorders]="true"
+                        (onToolbarPreparing)="onToolbarPreparing($event)"
+                        [selectionFilter]="['id']"
+                >
+                  <dxo-scrolling mode="virtual"></dxo-scrolling>
+                  <dxi-column dataField="instruction" caption="Instruction"></dxi-column>
+                  <dxi-column dataField="responsable" caption="Responsable"></dxi-column>
+                  <dxi-column dataField="iniateur"
+                              caption="Iniateur(Approbateur)"></dxi-column>
+                  <dxi-column dataField="delai" caption="Délai"></dxi-column>
+                  <dxi-column dataField="Actions" [allowFiltering]="false" [width]="170"
+                              [allowSorting]="false" cellTemplate="cemplate"
+                              alignment="center"></dxi-column>
+                  <div *dxTemplate="let data of 'cemplate'">
+
+                    <i class="fa fa-trash" data-toggle="tooltip" title="effacer"
+                       (click)="deleteAnnotation(data.data)"></i>
+                  </div>
+
+                  <dxo-paging [pageSize]="5"></dxo-paging>
+                  <dxo-pager [showPageSizeSelector]="true"
+                             [allowedPageSizes]="[5, 10, 20]"
+                             [showInfo]="true"></dxo-pager>
+                </dx-data-grid>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+    </div>
+
+  </div>
+
+
+  <!--------------------------------------------------------Workflow----------------------------------------------------------------------------------------->
+
+  <div class="col-md-12" style="margin-bottom: 10px">
+
+    <div class="row">
+
+      <fieldset class="col-md-12">
+        <legend style=" width: 9%;">Workflow</legend>
+        <div class="col-md-12">
+          <div class="input-group-prepend">
+            <label style="width: 13%;">Commentaire</label>
+            <input type="text" class="form-control"  [(ngModel)]="courrierArrive.comment" #comment="ngModel"
+                   style="height: calc(1em + 0.75rem + 2px)" >
+
+          </div>
+
+        </div>
+
+      </fieldset>
+    </div>
+
+  </div>
+
+  <!--Workflow-->
+  <div class="row">
+    <div class="col-md-12">
+      <app-workflow [taskid]="taskid" [processInstanceId]="processInstanceId" [comment]="comment.value" [authentifier]="authentifer"  (messageEvent)="routerdocument($event,f)"></app-workflow>
+    </div>
+    <div class="col-md-3">
+      <button type="buttons-group col-md-3 ml-auto"
+              class="btn btn-primary btn-rounded w-200p mb-1 mr-1 btn-sm " id="buttonid"
+              (click)="sauvgarder(f)" style="width: 74%;margin-top: 1%;background-color: #4c3954">mis a jour
+      </button>
+    </div>
+    <!--        <div class="buttons-group col-md-3 ml-auto">-->
+
+    <!--            <div class="buttons-group" *ngFor="let i of decisionTab">-->
+    <!--                <button class="btn btn-primary btn-rounded w-200p mb-1 mr-1 btn-sm butttons-style"-->
+    <!--                        style="margin-right: -5%;margin-top: 1%;width: 74% ;margin-left: 24%;"-->
+    <!--                        (click)="routerdocument(f,i)">{{i}}-->
+    <!--                </button>-->
+    <!--            </div>-->
+    <!--        </div>-->
+  </div>
+
+</form>
+
+

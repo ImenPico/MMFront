@@ -1,0 +1,83 @@
+<div widget class="card border-0">
+    <div class="card-header transparent border-0 text-muted">
+        <h5 class="mb-0">Courriers</h5>
+        <div class="widget-controls"> 
+            <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+            <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>                         
+            <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a>
+        </div>        
+    </div>
+    <div class="card-body pt-0 pl-2 pr-2 pb-2 widget-body">
+        <dx-data-grid  [dataSource]="dossiersList"
+                       [allowColumnReordering]="true"
+                       [allowColumnResizing]="true"
+                       (onRowInserting)="add($event)"
+                       [showBorders]="true"
+                       [rowAlternationEnabled]="true"
+                       [remoteOperations]="true"
+                       (onSelectionChanged)="selectedChanged($event)"
+                       [showColumnLines]="false"
+                       [showRowLines]="false">
+
+            <dxo-scrolling mode="virtual" ></dxo-scrolling>
+            <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+            <dxo-load-panel [enabled]="true"></dxo-load-panel>
+            <dxo-selection mode="single"></dxo-selection>
+
+            <dxi-column dataField="date" caption="Date" [width]="150" [filterOperations]="['contains']" [visible]="false">
+            </dxi-column>
+            <dxi-column dataField="Expediteur" caption="Expéditeur" [filterOperations]="['contains']">
+                <dxo-header-filter [allowSearch]="true" [dataSource]=""></dxo-header-filter>
+            </dxi-column>
+            <dxi-column dataField="RespAct" caption="Responsable Actuel" [filterOperations]="['contains']"></dxi-column>
+            <dxi-column dataField="objet" caption="Objet" [filterOperations]="['contains']">
+                <dxo-header-filter [allowSearch]="true" [dataSource]=""></dxo-header-filter>
+            </dxi-column>
+            <dxi-column dataField="entiteExterne" caption="Entite Externe" [filterOperations]="['contains']"></dxi-column>
+            <dxi-column dataField="Activité" caption="Activité" [filterOperations]="['contains']"></dxi-column>
+
+            <dxo-paging [pageSize]="20"></dxo-paging>
+            <dxo-pager [showPageSizeSelector]="true" [visible]="true" [allowedPageSizes]="[20, 40, 60, 80, 100, 120, 140]" [showInfo]="true"></dxo-pager>
+            <dxo-sorting mode="multiple"></dxo-sorting>
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="Rechercher..."></dxo-search-panel>
+            <dxo-group-panel [visible]="false"></dxo-group-panel>
+            <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+
+
+
+            <!--    <div *dxTemplate="let data of 'otherTemplate'">-->
+            <!--        <div class="dx-field">-->
+
+
+            <!--            &lt;!&ndash;<div class="dx-field-value"><a>&ndash;&gt;-->
+            <!--            &lt;!&ndash;<i class="fas fa-paperclip"  *ngIf="data.data.nbrfile >0" aria-hidden="true"></i>&ndash;&gt;-->
+            <!--            &lt;!&ndash;</a></div>&ndash;&gt;-->
+
+
+            <!--            <div class="dx-field-value"><a>-->
+            <!--                <i *ngIf="data.data.taskId !==''"  class="fa fa-hourglass-start" aria-hidden="true"></i>-->
+            <!--            </a></div>-->
+
+            <!--            <div class="dx-field-value"><a>-->
+            <!--                <i *ngIf="data.data.taskId ===''" class="fa fa-hourglass" aria-hidden="true"></i>-->
+            <!--            </a></div>-->
+
+
+
+
+
+
+            <!--            &lt;!&ndash;            <div class="dx-field-value" (click)="onUploadFiles(data.data)"><a>&ndash;&gt;-->
+            <!--            &lt;!&ndash;                <dx-button icon="fa fa-paperclip"></dx-button>&ndash;&gt;-->
+            <!--            &lt;!&ndash;            </a></div>&ndash;&gt;-->
+            <!--        </div>-->
+            <!--    </div>-->
+
+
+
+        </dx-data-grid>
+
+    </div>
+</div>

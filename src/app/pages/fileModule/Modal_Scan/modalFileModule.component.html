@@ -1,0 +1,198 @@
+<div class="modal-header" style="background:#bce8f1 ;">
+    <h4 class="modal-title">Personnaliser</h4>
+    <button type="button" class="close" aria-label="Close"(click)="clear()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <!--<div class="row">-->
+    <!--<div class="col">-->
+
+    <!--<form [formGroup]="formm">-->
+    <div class="form-group">
+        <div class="row">
+            <div class="col-4 ">
+                <img  src="assets/images.jpg" height="100" width="100" >
+            </div>
+            <div class="col-4 ">
+                <div style="float: left"><h5>Scanner</h5></div><div style="float: left"><p style="white-space:pre;color: red;font-weight: bold">  *</p></div>
+                <select  style="width: 200px" [formControl]="namescanner" class="form-control validation-field"   #selectedScannerName>
+                    <option value="" selected disabled hidden>Choisir Une Scanner</option>
+                    <option  *ngFor="let item of Listscanner" [value]="item">{{item}}</option>
+
+                </select>
+
+              <small class="text-danger" *ngIf="form.get('namescanner').touched && form.get('namescanner').hasError('required')">veuillez saisir le nom du scanner</small>
+
+
+            </div>
+
+            <!--<div class="col-4 ">-->
+            <!--<h5 >Assistant</h5>-->
+            <!--<input id="assistant" type="checkbox"  size="10px;" [(ngModel)]="theCheckbox"  (change)="toggleVisibility($event)" >-->
+
+
+            <!--</div>-->
+
+        </div>
+        <!--<div class="form-group">-->
+
+        <!---->
+        <!--</div>-->
+        <!--https://developer.mozilla.org/fr/docs/Web/HTML/Element/Fieldset-->
+    </div>
+    <!--<div class="form-group"> <hr width="100%" color="blue"> </div>-->
+    <!--</form>-->
+
+
+</div>
+<div class="modal-header" style="background:#bce8f1 ;width:100%;">
+    <h4 class="modal-title">Paramètres</h4>
+</div>
+<div class="modal-body">
+
+<!--<div>-->
+<!--    <div style="float: left"><h5>Nom de Fichier</h5></div><div style="float: left"><p style="white-space:pre;color: red;font-weight: bold">  *</p></div>-->
+
+<!--    <input type="text" id="name" name="name" required>-->
+    <!--</div>-->
+
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-4 ">
+                <div style="float: left"><h5>Type du document</h5></div><div style="float: left"><p style="white-space:pre;color: red;font-weight: bold">  *</p></div>
+
+                <!--<h5>Type du document</h5>-->
+                <!--<select  style="width: 200px" class="form-control"  [(ngModel)]="Acquire.selectedScannerName" required #selectedScannerName>-->
+                <!--<option value="Options" selected="true" [disabled]="true">Choisir une Scanner</option>-->
+                <!--<option  *ngFor="let item of Listscanner" [value]="item">{{item}}</option>-->
+
+                <!--</select>-->
+
+
+
+
+                <select  style="width: 200px" class="form-control" [formControl]="Typedudocument"  #fileType>
+
+                    <option value="" selected disabled hidden>Choisir Une Valeur</option>
+
+                    <option value="pdf" [disabled]=theCheckbox>PDF</option>
+
+                </select>
+                <small class="text-danger" *ngIf="form.get('Typedudocument').touched && form.get('Typedudocument').hasError('required')">veuillez saisir le type du document</small>
+
+              </div>
+
+<!--            <div class="col-4 ">-->
+<!--                <div style="float: left"><h5>Nom du fichier</h5></div><div style="float: left"><p style="white-space:pre;color: red;font-weight: bold">  *</p></div>-->
+
+
+<!--                <input type="text" id="name" name="name" class="form-control" [formControl]="Nomfichier" [(ngModel)]="Acquire.fileName" #fileName >-->
+<!--                <small class="text-danger" *ngIf="form.get('Nomfichier').touched && form.get('Nomfichier').hasError('required')">veuillez saisir le nom du fichier scanner</small>-->
+
+
+<!--            </div>-->
+
+
+
+           </div>
+
+       </div>
+
+    <div class="form-group">
+        <h5>Mode</h5>
+        <!--<div class="row">-->
+        <!--<div class="col-4">-->
+        <!--<div style="float: left"><h5>Mode</h5></div><div style="float: left"><p style="white-space:pre;color: red;font-weight: bold">  *</p></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <div class="row">
+            <div class="col-4">
+                <input type="radio" name="radio" id="Couleur" value="2" [checked]="true" [disabled]="theCheckbox" >
+                <label for="Couleur" style="white-space:pre;">   Couleur</label>
+            </div>
+            <div class="col-4">
+                <input type="radio" name="radio" id="gris"  value="1" [disabled]="theCheckbox">
+                <label for="gris" style="white-space:pre;">   Gris</label>
+            </div>
+            <div class="col-4">
+                <input type="radio" name="radio" id="Noir et Blanc" value="0"  [disabled]="theCheckbox" >
+                <label for="Noir et Blanc" style="white-space:pre;">     Noir et Blanc</label>
+            </div>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-4">
+                <h5>Numérisation</h5>
+                <input type="checkbox" name="radio1" id="radio1"  [disabled]="theCheckbox" >
+                <label style="white-space:pre;">   RectoVerso</label>
+                <div class="col-4">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<select  style="width: 200px" class="form-control" [(ngModel)]="Acquire.fileType" #fileType>-->
+    <!--<option value="Options" selected="true" [disabled]="true">Choisir une valeur</option>-->
+    <!--<option [disabled]=theCheckbox>PDF</option>-->
+
+    <!--</select>-->
+    <div class="form-group" >
+        <div class="row">
+            <div class="col-4">
+                <div style="float: left"><label>Résolution</label></div><div style="float: left"><p style="white-space:pre;color: red;font-weight: bold">  *</p></div>
+
+                <!--<label>Résolution</label>-->
+                <select   style="width: 200px"  [formControl]="resolution" class="form-control"  #SetResolutionInt>
+                    <option value="" selected disabled hidden>Choisir Une Valeur</option>
+
+                    <option *ngFor="let item of Resolution"  [disabled]="theCheckbox" [value]="item">{{item}}</option>
+
+
+
+
+                </select>
+                <small class="text-danger" *ngIf="form.get('resolution').touched && form.get('resolution').hasError('required')">veuillez saisir la résolution</small>
+
+            </div>
+            <div class="col-4">
+                <div style="float: left"><label>Taille du fichier</label></div><div style="float: left"><p style="white-space:pre;color: red;font-weight: bold">  *</p></div>
+
+                <!--<label>Taille du fichier</label>-->
+                <select  [formControl]="tailledufichier" style="width: 200px" class="form-control"  required="true" #SetPaperSize >
+                    <option value="" selected disabled hidden>Choisir Une Valeur</option>
+                    <option value="20" [disabled]="theCheckbox">A1</option>
+                    <option value="21" [disabled]="theCheckbox">A2</option>
+                    <option value="11" [disabled]="theCheckbox">A3</option>
+                    <option value="1" [disabled]="theCheckbox">A4</option>
+
+
+                </select>
+                <small class="text-danger" *ngIf="form.get('tailledufichier').touched && form.get('tailledufichier').hasError('required')">veuillez saisir la taille du fichier</small>
+
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
+
+
+</div>
+
+<div class="modal-footer">
+    <!--<button type="button" class="btn btn-default" style="background:#bce8f1;" (click)="form.reset()">renitialiser</button>-->
+
+    <button type="button" class="btn btn-default" style="background:#bce8f1;" (click)="clear()">Fermer</button>
+    <button [disabled]="!form.valid" type="button" class="btn btn-default" style="background:#bce8f1;" (click)="onAcquire(selectedScannerName.value,fileType.value,SetResolutionInt.value,SetPaperSize.value)">Save</button>
+    <!--<button type="button" class="btn btn-default" style="background:#bce8f1;" (click)="onAcquire()">Numériser</button>-->
+
+</div>
+

@@ -1,0 +1,18 @@
+{
+  "/api/*":{
+    "target":"http://127.0.0.1:8092",
+    "secure":false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/login/*":{
+    "target":"http://127.0.0.1:8092",
+    "secure":false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/alfresco/*": {
+    "target": "http://192.168.10.162:80",
+    "changeOrigin": true
+  }
+}

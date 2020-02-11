@@ -1,0 +1,50 @@
+<html>
+<div class="row">
+
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-12">
+        <fieldset style="margin-top: 1%;">
+          <legend style="width: 12%;font-size: small;">Journal Workflow</legend>
+          <div class="row">
+            <div class="form-group col-md-12">
+              <div class="input-group-prepend">
+                <table class="table" >
+                  <thead>
+                  <tr>
+                    <th scope="col" >Task name</th>
+                    <th scope="col" >Decision </th>
+                    <th scope="col">Responsable</th>
+                    <th scope="col" >Start Time</th>
+                    <th scope="col" >End Time</th>
+                    <th scope="col" >Durée</th>
+                    <th scope="col" >Description</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let h of historicTasks;let i=index">
+                    <td style="font-size: smaller;">{{h.taskName}}</td>
+                    <td style="font-size: smaller">{{h.decision}}</td>
+                    <td style="font-size: smaller">{{h.assignee}}</td>
+                    <td style="font-size: smaller">{{h.startTime}}</td>
+                    <td style="font-size: smaller">{{h.endTime}}</td>
+                    <td style="font-size: smaller">{{h.duree}}</td>
+                    <td style="font-size: smaller">{{h.description}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+
+<!--  <div class="col-md-12">-->
+<!--    <div  *ngFor="let d of decisionTab" style="float: right;">-->
+<!--      <button type="button" class="btn btn-primary btn-rounded w-200p mb-1 mr-1 butttons-style" style="float: right;font-size: 85%;" [disabled]="Identificationobligatoire===true"  (click)="routerdocument(processInstanceId,taskid,d,comment,authentifier,listParam)">{{d}}</button>-->
+<!--    </div>-->
+<!--  </div>-->
+</div>
+</html>

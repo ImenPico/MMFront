@@ -1,0 +1,167 @@
+<dx-data-grid
+        heigh="100%"
+        id="gridListuplodeAlf"
+        [dataSource]="pieceJoinNom1"
+        [columnAutoWidth]="true"
+        [showRowLines]="true"
+        [hoverStateEnabled]="true"
+        [showBorders]="true"
+        [(selectedRowKeys)]="selectedRows"
+        [selectionFilter]="['id']">
+    <dxi-column dataField="NomFile" [allowFiltering]="false" [allowSorting]="false" cellTemplate="" alignment="center"></dxi-column>
+    <dxi-column dataField="Actions" [allowFiltering]="false"
+                [allowSorting]="false" cellTemplate="cemplate" alignment="center"></dxi-column>
+    <div *dxTemplate="let data of 'cemplate'">
+        <i class="fa fa-paperclip" data-toggle="tooltip" title="rattacher fichier" (click)="click(data.data);input.click();" style="margin-right: 18%;"></i>
+        <a (click)="onAcquireImagee(data.data)"><img click="" src="../../../../assets/img/app/imgscanne.jpg" height="20" width="20" style="margin-right: 17%;"/></a>
+        <i class="fa fa-trash" data-toggle="tooltip" title="supprimer fichier" (click)="removeImage(testtab[data.data],data.data);input.value=''" style="margin-right: 18%;"></i>
+        <i class="fa fa-plus" data-toggle="tooltip" title="ajouter fichier" (click)="addrow()" style="margin-right: 18%;"></i>
+    </div>
+    <dxo-paging [pageSize]="5"></dxo-paging>
+    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>
+</dx-data-grid>
+
+<ng-template  #namefileModel let-close="close" >
+    <div class="row">
+        <div class="col-md-12">
+            <div class="modal-header" id="modalscan" style="background: #ebe8e8 ;color: black">
+                <div class="col-md-6">
+                    <h4 > Entrer nom fichier scannĂ© </h4>
+                </div>
+                <div class="col-md-6">
+                    <h4>visualisation</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <!--<div class="col-md-12">-->
+
+
+            <div class="col-md-6 ">
+                <!--<div class="col-lg-5 mb-4 form-group">-->
+                <input type="text" name="foldaName" #NameFile/>
+
+                <!--</div>-->
+            </div>
+            <div class="col-md-6">
+                <!--<div class="col-lg-5 mb-4 form-group">-->
+
+                <button class="btn btn-primary" [hidden]="!testscann" type="button" (click)="pdfviewerr()">visualiser</button>
+
+            </div>
+
+            <!--</div>-->
+
+            <!--</div>-->
+            <!--</div>-->
+        </div >
+        <!--<iframe style="width: 100% ;"  scrolling="yes"  frameborder='0' height='623px'  [hidden]="!testscann">-->
+        <pdf-viewer   [src]="pdfsrc"
+                      [original-size]="false"
+                      [show-all]="true"
+
+
+
+
+        ></pdf-viewer>
+        <!--</iframe>-->
+    </div>
+
+    <div class="modal-footer">
+
+        <!--<div class="col-md-2 offset-12">-->
+        <button class="btn btn-primary" type="button" (click)="scan(NameFile.value)">scan</button>
+        <!--</div>-->
+
+    </div>
+
+
+
+</ng-template>
+
+<div class="form-group">
+
+    <div class="input-group file-upload ">
+
+
+        <input   id="hide" type="file" multiple (change)="fileChange(input)" #input  hidden class="file-upload-btn"/>
+
+
+    </div>
+
+</div>
+<!--<app-formulaireclient hidden #fc></app-formulaireclient>-->
+
+<!--<dx-data-grid-->
+<!--        heigh="100%"-->
+<!--        id="gridList"-->
+<!--        [dataSource]="pieceJoinNom1"-->
+<!--        [columnAutoWidth]="true"-->
+<!--        [showRowLines]="true"-->
+<!--        [hoverStateEnabled]="true"-->
+<!--        [showBorders]="true"-->
+<!--        [(selectedRowKeys)]="selectedRows"-->
+<!--        [selectionFilter]="['id']"-->
+<!--        (onToolbarPreparing)="onToolbarPreparing($event)"-->
+<!--        [showColumnHeaders]="false">-->
+
+<!--    <dxo-selection [deferred]="true" mode="multiple" ></dxo-selection>-->
+<!--    <dxi-column dataField="name" caption="Nom"></dxi-column>-->
+<!--    <dxi-column dataField="NomFile" [allowFiltering]="false" [allowSorting]="false" cellTemplate="" alignment="center"></dxi-column>-->
+<!--    <dxi-column dataField="Actions" [allowFiltering]="false" [width]="170" [allowSorting]="false" cellTemplate="cemplate" alignment="center"></dxi-column>-->
+<!--    <div *dxTemplate="let data of 'cemplate'">-->
+<!--        <i class="fa fa-paperclip" data-toggle="tooltip" title="Show" (click)="click(data.data);input.click();" style="margin-right: 18%;"></i>-->
+<!--        <a (click)="onAcquireImagee(data.data)"><img click="" src="../../../../assets/img/app/imgscanne.jpg" height="20" width="20" style="margin-right: 17%;"/></a>-->
+<!--        <i class="fa fa-trash" data-toggle="tooltip" title="Lock" (click)="removeImage(testtab[data.data],data.data);input.value=''" style="margin-right: 5%;"></i>-->
+<!--        <i class="fa fa-plus" aria-hidden="true" (click)="onToolbarPreparing($event)"></i>-->
+<!--    </div>-->
+<!--    <dxo-paging [pageSize]="5"></dxo-paging>-->
+<!--    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true"></dxo-pager>-->
+<!--</dx-data-grid>-->
+
+<!--<ng-template  #namefileModel let-close="close" >-->
+<!--    <div class="row">-->
+<!--        <div class="col-md-12">-->
+<!--            <div class="modal-header" id="modalscan" style="background: #ebe8e8 ;color: black">-->
+<!--                <div class="col-md-6">-->
+<!--                    <h4 > Entrer nom fichier scannĂ© </h4>-->
+<!--                </div>-->
+<!--                <div class="col-md-6">-->
+<!--                    <h4>visualisation</h4>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="modal-body">-->
+<!--        <div class="row">-->
+<!--            <div class="col-md-6 ">-->
+<!--                <input type="text" name="foldaName" #NameFile/>-->
+<!--            </div>-->
+<!--            <div class="col-md-6">-->
+<!--                <button class="btn btn-primary" [hidden]="!testscann" type="button" (click)="pdfviewerr()">visualiser</button>-->
+<!--            </div>-->
+<!--        </div >-->
+<!--        <pdf-viewer   [src]="pdfsrc"-->
+<!--                      [original-size]="false"-->
+<!--                      [show-all]="true">-->
+<!--        </pdf-viewer>-->
+<!--    </div>-->
+<!--    <div class="modal-footer">-->
+<!--        <button class="btn btn-primary" type="button" (click)="scan(NameFile.value)">scan</button>-->
+<!--    </div>-->
+
+<!--</ng-template>-->
+
+<!--<div class="form-group">-->
+<!--    <div class="input-group file-upload ">-->
+<!--        <input   id="hide" type="file" multiple (change)="fileChange(input)" #input  hidden class="file-upload-btn"/>-->
+<!--    </div>-->
+
+<!--</div>-->
+
+
+
+
+

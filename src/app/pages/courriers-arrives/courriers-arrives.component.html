@@ -1,0 +1,511 @@
+<div class="tabs is-centered is-fullwidth" style="background-color: rgb(210,201,210);">
+    <div class="row">
+
+        <div class="col-md-4">
+            <h5 class="active" style="color: #875a7b;font-family: serif;margin-top: 2%;margin-left: 5%"> Courrier
+                Arrivé </h5>
+
+        </div>
+        <div class="col-md-4" *ngIf="ajout==='newcourrierArriver'">
+            <p class="breadcrumb-item active" style="color: #875a7b;">{{identifcourrier}}</p>
+        </div>
+        <div class="col-md-4" *ngIf="ajout!=='newcourrierArriver'">
+            <p class="breadcrumb-item active" style="color: #875a7b;">{{ courrierArrive.identifiant}}</p>
+        </div>
+        <div class="col-md-4" style="padding-left: 20%;">
+
+            <a class="btn btn-white ">
+                <i class="fa fa-floppy-o fabar my-2 my-sm-0 " style="color: #008979;" title="Sauvegarder"
+                   (click)="onEnregistere()"></i>
+            </a>
+            <a class="btn btn-white float-left">
+                <i class="fa fa-ban fabar my-2 my-sm-0" style="color: #008979;" title="Annuler" (click)="onCancel()"></i>
+            </a>
+            <span *ngIf="ajout==='newcourrierArriver'">
+
+                <a class="btn btn-white ">
+                <i class="fa fa-id-card" aria-hidden="true" style="color: #008979;" title="Identifiant Courrier" (click)="reference()"></i>
+            </a>
+            </span>
+        </div>
+    </div>
+</div>
+<br>
+<form #f="ngForm">
+    <!--Courrier-->
+    <div class="row">
+        <div class="col-md-12">
+            <fieldset style="margin-top: -15px;">
+                <legend style="width: 12%; font-size: small">Courrier</legend>
+                <input type="checkbox" name="importance" [checked]="courrierArrive.importance == 'important'"  [(ngModel)]="courrierArrive.importance"
+                       #importance="ngModel" [disabled]="modedocument===false" style="float: right"/>
+                <i class="fa fa-exclamation" style="color: red;float: right ; margin-right: 1%;" aria-hidden="true"></i>
+                <table width="100%;">
+                    <tr>
+                        <td width="5.4%;">
+                            <label style="padding-right:0.40rem;"> Objet</label>
+                        </td>
+                        <td colspan=5>
+                            <input type="text" class="form-control" id="objet" name="subject"
+                                   [(ngModel)]="courrierArrive.subject" #subject="ngModel"
+                                   style="height: calc(1em + 0.75rem + 2px);width: 100%;"
+                                   [disabled]="modedocument===false">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="radioDefault">Nature</label>
+                        </td>
+                        <td width="30%;">
+                            <div class="custom-control custom-radio some-class checkStyle " id="radioDefault"
+                                 *ngFor="let n of nature">
+                                <input type="radio" name="nature" value="{{n}}" [(ngModel)]="courrierArrive.nature"
+                                       #naturee="ngModel" [disabled]="modedocument===false"/>{{n}}
+                            </div>
+
+                        </td>
+                        <td width="6%;">
+                            <label>Ref ext</label>
+                        </td>
+                        <td width="20%;">
+                            <input type="text" class="form-control" id="référence" name="refexterne"
+                                   [(ngModel)]="courrierArrive.refexterne" #refExternn="ngModel"
+                                   style="height: calc(1em + 0.75rem + 2px); width: 50%;"
+                                   [disabled]="modedocument===false">
+                        </td>
+                        <td width="10%;">
+                            <label>D.Courrier</label>
+                        </td>
+                        <td width="20%;">
+                            <div class="input-group">
+                                <input id="datecourrierr" class="form-control ngb-dp-day ngb-dp-today" name="datecourrier" ngbDatepicker
+                                       #p2="ngbDatepicker"
+                                       [(ngModel)]="courrierArrive.datecourrier"
+                                       style="height: calc(1em + 0.75rem + 2px);" [disabled]="modedocument===false">
+                                <div class="input-group-append" (click)="p2.toggle()">
+                                    <span class="input-group-text"><i class="fa fa-calendar" style="color: #00a09d"></i></span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="2%">
+                            <label style="padding-right:0.40rem;"> Catégorie</label>
+                        </td>
+                        <td width="35%">
+                            <select class="form-control" id="catégorie" name="categorie"
+                                    [(ngModel)]="courrierArrive.categorie" #categoryy="ngModel"
+                                    style="width: 94%;font-size: smaller;height: calc(1em + 0.75rem + 2px);padding-top: 0%;"
+                                    [disabled]="modedocument===false">
+                                <option>Courrier normal</option>
+                                <option>Courrier de la clientèle</option>
+                                <option>Autre</option>
+                            </select>
+                        </td>
+                        <td>
+                            <label style="padding-right:0.40rem;"> Rép.sur</label>
+                        </td>
+                        <td>
+<!--                            <select class="form-control" id="refreponse" name="refreponse"-->
+<!--                                    [(ngModel)]="courrierArrive.refreponse"-->
+<!--                                    style="width: 50%;height: calc(1em + 0.75rem + 2px);"  [disabled]="modedocument===false">-->
+<!--                                <option>1</option>-->
+<!--                                <option>2</option>-->
+<!--                            </select>-->
+                            <input style="height: calc(1em + 0.75rem + 2px); width: 50%;" id="typeahead-format" type="text" class="form-control"  name="refreponse"  [(ngModel)]="courrierArrive.refreponse" [ngbTypeahead]="search" [resultFormatter]="formatter"  [disabled]="modedocument===false" />
+                        </td>
+                        <td>
+                            <label>D.Arrivée</label>
+                        </td>
+                        <td>
+                            <div class="input-group">
+                                <input id="datearrivee" class="form-control" name="datearrivee" ngbDatepicker
+                                       #p1="ngbDatepicker"
+                                       [(ngModel)]="courrierArrive.datearrivee"
+                                       style="height: calc(1em + 0.75rem + 2px);" [disabled]="modedocument===false">
+                                <div class="input-group-append" (click)="p1.toggle()">
+                                            <span class="input-group-text">
+                                                <i class="fa fa-calendar" style="color: #00a09d"></i></span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+            </fieldset>
+        </div>
+
+    </div>
+    <!--orgine-->
+    <div class="row">
+        <div class="col-md-6">
+            <fieldset style="margin-top: 1%;">
+                <legend style="width: 26%; font-size: small">Origine</legend>
+
+                <table width="100%" name="table">
+                    <tr>
+                        <td width="11.5%;">
+                            <label style="padding-right:0.40rem;"> Organisme</label>
+                        </td>
+                        <td width="79%;">
+                            <input id="organisme" type="text" class="form-control"
+                                   name="emetteurorganisme"
+                                   [(ngModel)]="courrierArrive.emetteurorganisme"
+                                   #organisme="ngModel" style="height: calc(1em + 0.75rem + 2px);"
+                                   [disabled]="modedocument===false">
+                        </td>
+                        <td>
+                 <span>
+                <i class="icon dx-icon-home" (click)="openmodaleOrga()" style="color: #00a09d"></i>
+                   </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label style="padding-right:0.40rem;">Contact</label>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="emetteurcontact"
+                                   [(ngModel)]="courrierArrive.emetteurcontact"
+                                   #emetteurcontact="ngModel" style="height: calc(1em + 0.75rem + 2px);"
+                                   [disabled]="modedocument===false">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label style="padding-right:0.40rem;">Email</label>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="emetteuremail"
+                                   [(ngModel)]="courrierArrive.emetteuremail" style="height: calc(1em + 0.75rem + 2px);"
+                                   [disabled]="modedocument===false">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label style="padding-right:0.40rem;">Fax</label>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="emetteurfax"
+                                   [(ngModel)]="courrierArrive.emetteurfax"
+                                   #emetteurfax="ngModel" style="height: calc(1em + 0.75rem + 2px);"
+                                   [disabled]="modedocument===false">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label style="padding-right:0.40rem;">Adresse</label>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="entiteemettrice"
+                                   [(ngModel)]="courrierArrive.entiteemettrice"
+                                   #entiteemettrice="ngModel" style="height: calc(1em + 0.75rem + 2px);"
+                                   [disabled]="modedocument===false">
+                        </td>
+                        <td>
+              <span>
+                 <i class="icon dx-icon-map" style="color:#00a09d"> </i>
+              </span>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </div>
+        <div class="col-md-6">
+            <fieldset style="height: 96.5%;margin-top: 1%;">
+                <legend style="width: 21%;font-size: small">Pièces Jointes</legend>
+
+
+                <div class="row">
+
+                    <div class="col-md-12" *ngIf="courrierArrive.nodeRef===null">
+                        <app-fileuploadalfresco paramscanner="fileuploadalfresco"></app-fileuploadalfresco>
+
+                    </div>
+                    <div class="col-md-12" *ngIf="courrierArrive.nodeRef!=null">
+                        <app-blankFileModule></app-blankFileModule>
+
+                    </div>
+                </div>
+
+            </fieldset>
+        </div>
+    </div>
+
+
+    <!--   corps-->
+    <div class="row">
+        <div class="col-md-12">
+            <fieldset style="margin-top: 0.5%;">
+                <legend style="width: 12%;font-size: small">Corps</legend>
+
+
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <!--              <textarea class="textinput" placeholder="Corps"></textarea>-->
+                        <textarea id="body" name="body" class="textarea"
+                                  [(ngModel)]="courrierArrive.body" [disabled]="modedocument===false">...</textarea>
+
+
+                    </div>
+                </div>
+
+            </fieldset>
+        </div>
+
+    </div>
+
+
+    <!--Traitement-->
+
+    <div class="row">
+        <div class="col-md-12">
+            <fieldset style="margin-top: 0.5%;">
+                <legend style="width: 12%;font-size: small;">Traitement</legend>
+                <div class="row">
+                    <!--                            *************************destinataire****************************-->
+
+
+                    <div class="form-group col-md-6" [hidden]="radioSelected1 !== ''">
+                        <div class="input-group-prepend">
+                            <label style="width: 12%;margin-top: 1%;">Responsable</label>
+
+                            <select class="dropdown-toggle d-block"
+                                    style="border: 1px solid lightgrey;font: 400 13.3333px Arial;padding: 7px 9px 8px;border-radius: 3px;width:68%;color: lightgrey;height:calc(1em + 0.75rem + 2px);">
+                                <option hidden [value]="Choisirunevaleur" selected
+                                        style="width: 37px;margin-left: 0.05%;height: 25px;">
+                                </option>
+                            </select>
+
+
+                            <span *ngIf="modedocument===true" class="input-group-text" (click)="onItemClick('Par Direction')" #nature1
+                                  style="width: 37px;margin-left: 0.05%;height: 25px;">
+                                    <i class="fa fa-sitemap" style="color:#00a09d "></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6"
+                         [hidden]="radioSelected1==='Par Direction' || radioSelected1===''">
+                        <div class="input-group-prepend">
+                            <label style="width: 12%;margin-top: 1%;">Responsable</label>
+
+                            <select class="dropdown-toggle d-block"
+                                    [(ngModel)]="MYJSONDespCopie.auteurDocument"  [disabled]="modedocument===false"
+                                    name="auteurDocument" id="select"
+                                    style="border: 1px solid lightgrey;font: 400 13.3333px Arial;border-radius: 3px;width:68%;height: calc(1em + 0.75rem + 2px);padding-top: 0%;">
+                                <option hidden [value]="Choisirunevaleur" selected
+                                        style="width: 37px;margin-left: 0.05%;height: 25px;">
+                                </option>
+
+                                <option *ngFor="let item of tab">
+                                    {{item}}
+                                </option>
+                            </select>
+                            <span *ngIf="modedocument===true" class="input-group-text"  (click)="onItemClick('Par Direction')" #nature1
+                                  style="width: 37px;margin-left: 0.05%;height: 25px;">
+                                     <i class="fa fa-sitemap" style="color:#00a09d "></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6"
+                         [hidden]="radioSelected1==='Par Personne' || radioSelected1===''">
+                        <div class="input-group-prepend">
+                            <label style="width: 12%;margin-top: 1%;">Responsable</label>
+
+                            <dx-drop-down-box
+                                    id="TreeView2"
+                                    [(value)]="treeBoxValue1"
+                                    valueExpr="ID"
+                                    displayExpr="name"
+                                    [showClearButton]="true"
+                                    [dataSource]="treeDataSource1"
+                                    (onValueChanged)="syncTreeViewSelection1($event)"
+                                    [visible]="this.radioSelected1!=='Par Personne'"
+                                    style="width:68%;height:calc(1em + 0.75rem + 2px);" >
+                                <dxo-drop-down-options height="300px" width="500px"></dxo-drop-down-options>
+
+                                <div *dxTemplate="let data of 'content'">
+                                    <dx-tree-view
+                                            [dataSource]="treeDataSource1"
+                                            dataStructure="plain"
+                                            keyExpr="ID"
+                                            parentIdExpr="headId"
+                                            selectionMode="single"
+                                            displayExpr="name"
+                                            [selectByClick]="true"
+                                            (onContentReady)="$event.component.selectItem(treeBoxValue1)"
+                                            (onItemSelectionChanged)="treeView_itemSelectionChanged1($event)"
+                                            [width]="200" style="font-size: small;"[disabled]="modedocument===false">
+                                    </dx-tree-view>
+                                </div>
+                            </dx-drop-down-box>
+                            <span *ngIf="modedocument===true" class="input-group-text" (click)="onItemClick('Par Personne')" #nature1
+                                  style="width: 37px;margin-left: 0.05%;height: 25px;">
+                            <i class="fa fa-user" style="color:#00a09d "></i>
+                            </span>
+                        </div>
+                    </div>
+                    <!--      **************** en copie*******************-->
+
+                    <div class="form-group col-md-6" [hidden]="radioSelected2 !== ''">
+                        <div class="input-group-prepend">
+                            <label style="width: 15%;margin-top: 1%;margin-left: 6%;">En-copie</label>
+                            <select class="dropdown-toggle d-block" [disabled]="modedocument===false"
+                                    style="border: 1px solid lightgrey;font: 400 13.3333px Arial;border-radius: 3px;width:68%;height: calc(1em + 0.75rem + 2px);padding-top: 0%;">
+                                <option hidden [value]="Choisirunevaleur" selected
+                                        style="color: lightgrey">
+                                </option>
+                            </select>
+                            <span *ngIf="modedocument===true" class="input-group-text" (click)="onItemClick1('Par Direction')" #nature1
+                                  style="width: 37px;margin-left: 0.05%;height: 25px;">
+                 <i class="fa fa-sitemap" style="color:#00a09d "></i>
+                </span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6"
+                         [hidden]="radioSelected2==='Par Direction' || radioSelected2===''">
+                        <div class="input-group-prepend">
+                            <label style="width: 12%;margin-top: 1%;margin-left: 6%;">En-copie</label>
+                            <ejs-multiselect id="multiselect-checkbox" #checkbox enabled="false"
+                                             showselectall="true"
+                                             class="e-control e-multiselect e-lib"
+                                             style="width: 68%; border: 1px solid #dee1e3;border-radius: 3px;color: lightgrey; background-color: white;height:calc(1em + 1rem + 2px);font-size: x-small;"
+                                             [dataSource]='Users3'
+                                             [fields]='checkFields'
+                                             [mode]='mode'
+                            >
+                            </ejs-multiselect>
+                            <span *ngIf="modedocument===true" class="input-group-text" (click)="onItemClick1('Par Direction')" #nature1
+                                  style="width: 37px;margin-left: 0.05%;height: 25px;">
+                                <i class="fa fa-sitemap" style="color:#00a09d "></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6"
+                         [hidden]="radioSelected2==='Par Personne' || radioSelected2===''">
+                        <div class="input-group-prepend">
+                            <label style="width: 12%;margin-top: 1%;margin-left: 6%;">En-copie</label>
+                            <dx-drop-down-box id="tree"
+                                              [(value)]="treeBoxValue2"
+                                              valueExpr="ID"
+                                              displayExpr="name"
+                                              [showClearButton]="true"
+                                              [dataSource]="treeDataSource2"
+                                              (onValueChanged)="syncTreeViewSelection2($event)"
+                                              [visible]="this.radioSelected2=='Par Direction'"
+                                              style="width:68%;height:calc(1em + 0.75rem + 2px);" [disabled]="modedocument===false">
+                                <dxo-drop-down-options height="300px" width="500px"></dxo-drop-down-options>
+
+                                <div *dxTemplate="let data of 'content'">
+                                    <dx-tree-view #treeView2ID
+                                                  [dataSource]="treeDataSource2"
+                                                  dataStructure="plain"
+                                                  keyExpr="ID"
+                                                  parentIdExpr="headId"
+                                                  selectionMode="multiple"
+                                                  showCheckBoxesMode="none"
+                                                  [selectNodesRecursive]="false"
+                                                  displayExpr="name"
+                                                  [selectByClick]="true"
+                                                  (onContentReady)="syncTreeViewSelection2($event)"
+                                                  (keyExprChange)="syncTreeViewSelection2($event)"
+                                                  (onItemSelectionChanged)="treeView_itemSelectionChanged2($event)"
+                                                  [width]="200" style="font-size: small;width: 337px;"[disabled]="modedocument===false">
+                                    </dx-tree-view>
+                                </div>
+                            </dx-drop-down-box>
+                            <span *ngIf="modedocument===true" class="input-group-text" (click)="onItemClick1('Par Personne')" #nature1
+                                  style="width: 37px;margin-left: 0.05%;height: 25px;">
+                                   <i class="fa fa-user" style="color:#00a09d "> </i>
+                             </span>
+                        </div>
+                    </div>
+                </div>
+                <table width="100%;">
+                    <td width="5.5%;">
+                        <label style="width: 14%;margin-top: 0%;">Commentaire</label>
+                    </td>
+                    <td>
+
+                        <input type="text" class="form-control" [(ngModel)]="courrierArrive.comment" #comment="ngModel"
+                               name="comment"
+                               style="height: calc(1em + 0.75rem + 2px);width: 95.5%;"
+                               [disabled]="modedocument===false">
+
+                    </td>
+
+                </table>
+            </fieldset>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <app-workflow [taskid]="taskid"
+                          [processInstanceId]="processInstanceId" [comment]="comment.value" [authentifier]="authentifer"
+                          [params]="listparams"
+                          (messageEvent)="returnroutage($event)"></app-workflow>
+        </div>
+
+    </div>
+
+    <div class="row" style="padding-top:0.9%">
+        <div class="col-md-6">
+
+
+            <button [hidden]="modedocument===false" *ngIf="ajout ==='newcourrierArriver'" type="submit"
+                    class="btn btn-primary btn-rounded w-200p mb-1 mr-1"
+                    [disabled]="testIdentification===false" (click)="sauvgarder(f)"
+                    style="float: left;font-size: 85%;background-color: #4c3954;">
+                sauvegarder
+            </button>
+            <button [hidden]="modedocument===false" *ngIf="ajout!=='newcourrierArriver'" type="button"
+                    class="btn btn-primary btn-rounded w-200p mb-1 mr-1"
+                    (click)="sauvgarder(f)" style="float: left; font-size: 85%;background-color: #4c3954">
+                mis a jour
+            </button>
+        </div>
+        <div class="col-md-6">
+            <div [hidden]="modedocument===false" *ngFor="let d of workflow.decisionTab" style="float: right;">
+                <button type="button"
+                        class="btn btn-primary btn-rounded w-200p mb-1 mr-1 butttons-style"
+                        style="float: right;font-size: 85%;"
+                        (click)="workflow.routerdocument(processInstanceId,taskid,d,comment.value,authentifer,formatParams(params,f))">{{d}}</button>
+            </div>
+        </div>
+    </div>
+
+
+</form>
+<!--Model organisime-->
+<ng-template #filesorganisme let-close="close">
+    <dx-data-grid
+            id="gridbaseContact"
+            [dataSource]="baseContact"
+            keyExpr="ID"
+            [columnAutoWidth]="true"
+            [showBorders]="true">
+
+        <dxo-paging [enabled]="false"></dxo-paging>
+        <dxo-editing
+                mode="batch"
+                [allowUpdating]="true"
+                [allowAdding]="true">
+        </dxo-editing>
+
+        <dxi-column dataField="Organisme">
+        </dxi-column>
+        <dxi-column dataField="Contact">
+        </dxi-column>
+    </dx-data-grid>
+</ng-template>
+
+
+<div class="col-xl-12" *ngIf="handle1">
+    <br>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{handle1}}</strong>
+    </div>
+</div>

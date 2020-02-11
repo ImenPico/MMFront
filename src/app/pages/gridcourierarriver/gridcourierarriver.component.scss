@@ -1,0 +1,38 @@
+//.dx-fa-button , .dx-fa-button-main {
+//  .dx-overlay-content {
+//    max-width: 48px;
+//    max-height: 48px;
+//    background-color: #27a4ab;
+//    color: #fff;
+//  }
+//
+//
+//}
+
+fa-hourglass{
+  color: red;
+}
+fa-hourglass-start{
+  color: #4BAE4F;
+}
+//.fa-hourglass-start {
+//  &:before {
+//    content: "\f003";
+//    font-size: 12px;
+//    border-radius: 50%;
+//    border: 1px solid green;
+//    padding: 2px;
+//    background-color: green;
+//    color: white;
+//  }
+//  &:hover,
+//  &:focus {
+//    border: 20px solid black
+//  }
+//}
+
+.xlModal > .modal-dialog {
+  max-width: 1490px !important;
+  min-width: 971px !important;
+  width: 95% !important;
+}

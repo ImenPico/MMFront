@@ -1,0 +1,169 @@
+<dx-data-grid #grid id="gridContainer" [dataSource]="courrierArriverList" keyExpr="id"
+              [allowColumnReordering]="true"
+              [allowColumnResizing]="true"
+              [showBorders]="true"
+              [rowAlternationEnabled]="true"
+              [remoteOperations]="true"
+              (onSelectionChanged)="selectedChanged($event,grid.instance.getSelectedRowsData()[0])"
+              [showColumnLines]="false"
+              [showRowLines]="false"
+              (onCellPrepared)="onCellPrepared($event)">
+
+
+    <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+    <dxo-load-panel [enabled]="true"></dxo-load-panel>
+    <dxo-selection mode="single"></dxo-selection>
+    <dxi-column dataField="identifiant" caption="Référence" [width]="150" [filterOperations]="['contains']"
+                [visible]="true">
+    </dxi-column>
+    <dxi-column dataField="datecourrier" caption="Date Courrier" dataType="date"  [width]="150" format="dd/MM/yyyy"
+               >
+    </dxi-column>
+    <dxi-column dataField="datearrivee" caption="Date Arriver " [width]="150" dataType="date" format="dd/MM/yyyy"
+                [visible]="false">
+    </dxi-column>
+    <dxi-column dataField="refreponse" caption="Reponse Sur" [filterOperations]="['contains']" [visible]="false"></dxi-column>
+    <dxi-column dataField="emetteurorganisme" caption="Expéditeur" [filterOperations]="['contains']">
+    </dxi-column>
+    <dxi-column type="buttons" cellTemplate="otherTemplateimportant" ></dxi-column>
+    <dxi-column dataField="subject" caption="Objet ( activité)" [filterOperations]="['contains']">
+    </dxi-column>
+    <dxi-column dataField="destination" caption="Destination" [filterOperations]="['contains']"></dxi-column>
+    <dxi-column dataField="responsable" caption="Responsable" [filterOperations]="['contains']"></dxi-column>
+    <dxi-column dataField="activityName" caption="Activite" [filterOperations]="['contains']"></dxi-column>
+    <dxi-column  caption="Etat" cellTemplate="otherTemplate" ></dxi-column>
+
+    <dxo-paging [pageSize]="10"></dxo-paging>
+
+    <dxo-pager [showPageSizeSelector]="true" [visible]="true" [allowedPageSizes]="[10, 25, 50, 100]"
+               [showInfo]="true"></dxo-pager>
+    <dxo-column-chooser [enabled]="true" mode="select"></dxo-column-chooser>
+    <dxo-sorting mode="multiple"></dxo-sorting>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-header-filter [visible]="true"></dxo-header-filter>
+    <dxo-search-panel [visible]="true" [width]="240" placeholder="Rechercher..."></dxo-search-panel>
+    <dxo-group-panel [visible]="true"></dxo-group-panel>
+
+    <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+
+    <div>
+        <div *dxTemplate="let data of 'otherTemplate'">
+            <div class="dx-field">
+                <a>
+                    <i *ngIf="data.data.activityid==='null'" class="fa fa fa-check fa-lg"
+                       style="color: #00a09d; margin-left: 4%;" title="processus terminé" aria-hidden="true"></i>
+                </a>
+                <a>
+                    <i *ngIf="data.data.activityid !=='null'" class=" fa fa fa-times fa-lg"
+                       style="color: red ; margin-left: 4%;" aria-hidden="true" title="processus en cours de traitement"></i>
+                </a>
+                <a (click)="openmodalPj(data.data)"><i class="fa fa-paperclip fa-lg" style="float: right"
+                                                       title="consulter Pièces Jointes" aria-hidden="true"></i>
+                    <!--                <i class="fa fa-paperclip" aria-hidden="true" (click)="openmodalPj(data.data)"></i>-->
+                </a>
+
+            </div>
+        </div>
+
+        <div *dxTemplate="let data of 'otherTemplateimportant'">
+            <div class="dx-field">
+
+                <a>
+                    <i *ngIf="data.data.importance ==='important'"><img src="../../../../assets/img/app/exclamation-gif.gif" style="margin-right: 16%; width: 6px;  height: 21px;margin-left: 7%;"/></i>
+                </a>
+
+
+            </div>
+        </div>
+<!--        <div *ngIf="Filealfresco.length!==0">-->
+<!--        <div *dxTemplate="let data of courrierArriverList;">-->
+<!--&lt;!&ndash;            <a class="dx-field">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <a *ngIf="Filealfresco.typeFile==='Adobe PDF Document'>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <i class="fa fa-file-pdf-o fa-lg" style="color:red; float: right"&ndash;&gt;-->
+<!--&lt;!&ndash;                title="consulter Pièces Jointes" aria-hidden="true"></i></a>&ndash;&gt;-->
+<!--                <div *ngFor="let t of Filealfresco">-->
+<!--                            <a *ngIf="t['filesAlfreco']['nodeRefParent']===data.data['nodeRef']"><i *ngIf="t['filesAlfreco']['typeFile']==='Microsoft Word 2007'"class="fa fa-file-pdf-o fa-lg" style="color:red; float: right"-->
+<!--                                                                   title="consulter Pièces Jointes" aria-hidden="true"></i>-->
+<!--                                &lt;!&ndash;                <i class="fa fa-paperclip" aria-hidden="true" (click)="openmodalPj(data.data)"></i>&ndash;&gt;-->
+<!--                            </a>-->
+
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+        </div>
+
+
+</dx-data-grid>
+
+<dx-speed-dial-action
+        icon="add"
+        hint="Ajouter Courrier Arriver"
+        (onClick)="addRow()">
+</dx-speed-dial-action>
+
+<div *ngIf="selectedRowIndex !== -1">
+
+<span *ngIf="modedocument">
+    <dx-speed-dial-action
+            icon="edit"
+            hint="Modifier courrier Arriver"
+            (onClick)="onEdit(grid.instance.getSelectedRowsData()[0])">
+    </dx-speed-dial-action>
+    </span>
+    <span *ngIf="modedocument !==true">
+    <dx-speed-dial-action
+            icon="fa fa-eye"
+            hint="View Dossier"
+            (onClick)="onShowDetails(grid.instance.getSelectedRowsData()[0])">
+    </dx-speed-dial-action>
+</span>
+
+
+</div>
+
+<!--Modal pour le PJ-->
+<ng-template style="width:123%;" #piecejoite let-close="close" id="modalPj">
+    <div class="col-md-12">
+        <app-blankFileModule names="modeview"></app-blankFileModule>
+    </div>
+
+</ng-template>
+
+<!--<app-workflow #child ></app-workflow>-->
+
+<dx-data-grid id="gridContainerFile" [dataSource]="Filealfresco" keyExpr="id" [visible]="false"
+
+              [allowColumnReordering]="true"
+              [allowColumnResizing]="true"
+              [showBorders]="true"
+              [rowAlternationEnabled]="true"
+              [remoteOperations]="true"
+              (onSelectionChanged)="selectedChanged($event,grid.instance.getSelectedRowsData()[0])"
+              [showColumnLines]="false"
+              [showRowLines]="false"
+              (onCellPrepared)="onCellPrepared($event)">
+
+
+<!--    <dxo-column-chooser [enabled]="true"></dxo-column-chooser>-->
+<!--    <dxo-load-panel [enabled]="true"></dxo-load-panel>-->
+<!--    <dxo-selection mode="single"></dxo-selection>-->
+<!--    <dxi-column caption="Etat" cellTemplate="otherTemplate"></dxi-column>-->
+
+<!--    <dxo-paging [pageSize]="10"></dxo-paging>-->
+
+<!--    <dxo-pager [showPageSizeSelector]="true" [visible]="true" [allowedPageSizes]="[10, 25, 50, 100]"-->
+<!--               [showInfo]="true"></dxo-pager>-->
+<!--    <dxo-column-chooser [enabled]="true" mode="select"></dxo-column-chooser>-->
+<!--    <dxo-sorting mode="multiple"></dxo-sorting>-->
+<!--    <dxo-filter-row [visible]="true"></dxo-filter-row>-->
+<!--    <dxo-header-filter [visible]="true"></dxo-header-filter>-->
+<!--    <dxo-search-panel [visible]="true" [width]="240" placeholder="Rechercher..."></dxo-search-panel>-->
+<!--    <dxo-group-panel [visible]="true"></dxo-group-panel>-->
+
+<!--    <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>-->
+
+
+
+</dx-data-grid>
+

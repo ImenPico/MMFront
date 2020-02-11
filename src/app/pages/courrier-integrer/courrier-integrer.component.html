@@ -1,0 +1,79 @@
+<div widget class="card border-0">
+  <div class="card-header transparent border-0 text-muted">
+    <h5 class="mb-0">MailsDispatch</h5>
+    <div class="widget-controls">
+      <a data-widgster="expand" href="#" class="transition"><i class="fa fa-chevron-down"></i></a>
+      <a data-widgster="collapse" href="#" class="transition"><i class="fa fa-chevron-up"></i></a>
+      <a data-widgster="close" href="#" class="transition"><i class="fa fa-times"></i></a>
+    </div>
+  </div>
+  <div class="card-body pt-0 pl-2 pr-2 pb-2 widget-body">
+    <dx-data-grid #gridmail [dataSource]="mailboxlist"
+                  [allowColumnReordering]="true"
+                  [allowColumnResizing]="true"
+                  (onRowInserting)="add($event)"
+                  [showBorders]="true"
+                  [rowAlternationEnabled]="true"
+                  [remoteOperations]="true"
+                  (onSelectionChanged)="selectedChanged($event,gridmail.instance.getSelectedRowsData()[0])"
+                  [showColumnLines]="false"
+                  [showRowLines]="false">
+
+      <dxo-scrolling mode="virtual" ></dxo-scrolling>
+      <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+      <dxo-load-panel [enabled]="true"></dxo-load-panel>
+      <dxo-selection mode="single"></dxo-selection>
+      <dxi-column dataField="emmetteur" caption="emmetteur" [filterOperations]="['contains']">
+        <dxo-header-filter [allowSearch]="true" [dataSource]=""></dxo-header-filter>
+      </dxi-column>
+      <dxi-column dataField="destination" caption="destination" [filterOperations]="['contains']">
+        <dxo-header-filter [allowSearch]="true" [dataSource]=""></dxo-header-filter>
+      </dxi-column>
+      <dxi-column dataField="encopie" caption="encopie" [filterOperations]="['contains']">
+        <dxo-header-filter [allowSearch]="true" [dataSource]=""></dxo-header-filter>
+      </dxi-column>
+      <dxi-column dataField="dossier" caption="dossier" [filterOperations]="['contains']" [visible]="false">
+        <dxo-header-filter [allowSearch]="true" [dataSource]=""></dxo-header-filter>
+      </dxi-column>
+
+
+
+      <dxi-column dataField="taskid" caption="taskid" [filterOperations]="['contains']" [visible]="false">
+        <dxo-header-filter [allowSearch]="true" [dataSource]=""></dxo-header-filter>
+      </dxi-column>
+
+      <dxi-column dataField="subject" caption="subject" [filterOperations]="['contains']">
+        <dxo-header-filter [allowSearch]="true" [dataSource]=""></dxo-header-filter>
+      </dxi-column>
+
+
+      <dxi-column dataField="Action" [width]="145" [allowFiltering]="false" [allowEditing]="false" [allowSorting]="false"
+                  [width]="130"   [allowResizing]="false"   cellTemplate="otherTemplate"></dxi-column>
+
+
+      <dxo-paging [pageSize]="20"></dxo-paging>
+      <dxo-pager [showPageSizeSelector]="true" [visible]="true" [allowedPageSizes]="[20, 40, 60, 80, 100, 120, 140]" [showInfo]="true"></dxo-pager>
+      <dxo-sorting mode="multiple"></dxo-sorting>
+      <dxo-filter-row [visible]="true"></dxo-filter-row>
+      <dxo-header-filter [visible]="true"></dxo-header-filter>
+      <dxo-search-panel [visible]="true" [width]="240" placeholder="Rechercher..."></dxo-search-panel>
+      <dxo-group-panel [visible]="false"></dxo-group-panel>
+      <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+
+
+      <div *dxTemplate="let data of 'otherTemplate'">
+        <div class="dx-field">
+          <div class="dx-field-value"><a>
+            <i class="fa fa-edit"  aria-hidden="true" (click)="onEdit(gridmail.instance.getSelectedRowsData()[0])"></i>
+          </a></div></div></div>
+
+    </dx-data-grid>
+
+
+
+
+
+
+  </div>
+
+</div>

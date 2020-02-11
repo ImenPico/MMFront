@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center align-items-center w-100 h-100 login-container">
+    <div class="col-xl-4 col-md-6 col-10">
+        <div class="card border-0 box-shadow rounded-0">
+            <div class="card-header d-flex justify-content-center align-items-center border-0 box-shadow">
+                <i class="fa fa-sign-in" aria-hidden="true"></i>
+            </div>
+            <div class="card-body text-center pb-1">
+                <h2>Member login</h2>
+<!--                <a routerLink="/register" class="transition">Don't have an account? Sign up now!</a>-->
+
+                <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="text-left mt-4">
+                    <div class="form-group">
+                        <input [formControl]="username" class="form-control " placeholder="username" type="text">
+                        <!--<small class="text-danger" *ngIf="form.get('username').touched && form.get('username').hasError('required')">Email is required</small>
+                        <small class="text-danger" *ngIf="form.get('username').touched && form.get('username').hasError('username')">Invalid email address</small>-->
+                    </div>
+                    <div class="form-group">
+                        <input [formControl]="password" class="form-control " placeholder="password" type="password">
+                        <!--<small class="text-danger" *ngIf="form.get('password').touched && form.get('password').hasError('required')">Password is required</small>
+                        <small class="text-danger" *ngIf="form.get('password').touched && form.get('password').hasError('minlength')">Password isn't long enough, minimum of 6 characters</small>-->
+                    </div>
+
+                    <div class="text-danger " *ngIf="currentToken=='error'" style="text-align: center!important;margin-bottom: 8px;font-weight: bolder;font-size: 15px;">Merci de vérifier votre nom d'utilisateur et mot de passe</div>
+                    <div class="form-group">
+                        <button [disabled]="!form.valid" class="btn btn-block" type="submit">Login</button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center bg-transparent">
+<!--                <ul class="list-inline mb-0">-->
+<!--                    <li class="list-inline-item">-->
+<!--                        <span class="fa-stack fa-lg">-->
+<!--                            <i class="fa fa-square-o fa-stack-2x"></i>-->
+<!--                            <i class="fa fa-facebook fa-stack-1x"></i>-->
+<!--                        </span>-->
+<!--                    </li>-->
+<!--                    <li class="list-inline-item">-->
+<!--                        <span class="fa-stack fa-lg">-->
+<!--                            <i class="fa fa-square-o fa-stack-2x"></i>-->
+<!--                            <i class="fa fa-twitter fa-stack-1x"></i>-->
+<!--                        </span>-->
+<!--                    </li>-->
+<!--                    <li class="list-inline-item">-->
+<!--                        <span class="fa-stack fa-lg">-->
+<!--                            <i class="fa fa-square-o fa-stack-2x"></i>-->
+<!--                            <i class="fa fa-google fa-stack-1x"></i>-->
+<!--                        </span>-->
+<!--                    </li>-->
+<!--                </ul>-->
+            </div>
+        </div>
+    </div>
+</div>
+

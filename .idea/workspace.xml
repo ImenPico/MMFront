@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6d0f3a9f-6ec7-4aba-93cd-80336f9bea6b" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="1WfP8GQDkdt9azHp6RJ90Rw8my7" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/dossier bureau/fileModule" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="D:\WorkSpace\frontMM23-01-20\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\WorkSpace\frontMM23-01-20\src\assets\img" />
+      <recent name="D:\WorkSpace\frontMM23-01-20\src\app\pages\traitement" />
+      <recent name="D:\WorkSpace\frontMM23-01-20\src\app\pages\annotation" />
+      <recent name="D:\lastFrontt\src\app\pages\courriers-internes" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\WorkSpace\frontMM23-01-20\src\assets\img\app" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="npm.Angular CLI Server">
+    <configuration name="E2E Tests (startng)" type="JavaScriptTestRunnerProtractor">
+      <config-file value="$PROJECT_DIR$/e2e/protractor.conf.js" />
+      <node-interpreter value="project" />
+      <protractor-options value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular CLI Server" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6d0f3a9f-6ec7-4aba-93cd-80336f9bea6b" name="Default Changelist" comment="" />
+      <created>1579537514087</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1579537514087</updated>
+      <workItem from="1579537516960" duration="1958000" />
+      <workItem from="1579546375023" duration="80000" />
+      <workItem from="1579546864305" duration="628000" />
+      <workItem from="1579549411892" duration="13771000" />
+      <workItem from="1579592274864" duration="15126000" />
+      <workItem from="1579638142286" duration="623000" />
+      <workItem from="1579639197996" duration="34000" />
+      <workItem from="1579639652032" duration="8964000" />
+      <workItem from="1579679439171" duration="7326000" />
+      <workItem from="1579687062323" duration="24405000" />
+      <workItem from="1579779890467" duration="19530000" />
+      <workItem from="1579846991170" duration="7732000" />
+      <workItem from="1579857890647" duration="13686000" />
+      <workItem from="1580107417737" duration="80948000" />
+      <workItem from="1580367029055" duration="51264000" />
+      <workItem from="1580711261950" duration="9552000" />
+      <workItem from="1580738937887" duration="60020000" />
+      <workItem from="1581318306552" duration="39454000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/node_modules/.staging/@syncfusion/ej2-angular-buttons-7e98cc50/schematics/generators/radiobutton-default/schema.js" />
+        <option value="$PROJECT_DIR$/node_modules/.staging/@syncfusion/ej2-angular-buttons-7e98cc50/schematics/generators/radiobutton-default/schema.d.ts" />
+        <option value="$PROJECT_DIR$/node_modules/.staging/@syncfusion/ej2-angular-dropdowns-75854b3e/schematics/generators/autocomplete-diacritics-filtering/schema.js" />
+        <option value="$PROJECT_DIR$/node_modules/.staging/@syncfusion/ej2-angular-dropdowns-75854b3e/schematics/generators/autocomplete-diacritics-filtering/schema.d.ts" />
+      </list>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="463" y="120" key="FileChooserDialogImpl" timestamp="1579773663920">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="120" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1440.860@0.0.1366.728" timestamp="1579773663920" />
+    <state x="463" y="120" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1579538274094" />
+    <state width="1322" height="489" key="GridCell.Tab.0.bottom" timestamp="1579648668822">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="489" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1440.860@0.0.1366.728" timestamp="1579648668822" />
+    <state width="1322" height="489" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1579546310259" />
+    <state width="1322" height="489" key="GridCell.Tab.0.center" timestamp="1579648668822">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="489" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1440.860@0.0.1366.728" timestamp="1579648668822" />
+    <state width="1322" height="489" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1579546310259" />
+    <state width="1322" height="489" key="GridCell.Tab.0.left" timestamp="1579648668821">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="489" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1440.860@0.0.1366.728" timestamp="1579648668821" />
+    <state width="1322" height="489" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1579546310258" />
+    <state width="1322" height="489" key="GridCell.Tab.0.right" timestamp="1579648668822">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="489" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1440.860@0.0.1366.728" timestamp="1579648668822" />
+    <state width="1322" height="489" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1579546310259" />
+    <state x="0" y="0" key="com.intellij.ide.util.TipDialog" timestamp="1579687194305">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="0" y="0" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1440.860@0.0.1366.728" timestamp="1579687194305" />
+    <state x="390" y="0" width="585" height="728" key="find.popup" timestamp="1579706700322">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="390" y="0" width="585" height="728" key="find.popup/0.0.1366.728/1366.0.1440.860@0.0.1366.728" timestamp="1579706700322" />
+  </component>
+</project>

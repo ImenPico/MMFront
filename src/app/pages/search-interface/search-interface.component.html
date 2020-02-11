@@ -1,0 +1,143 @@
+
+<button (click)="toggle()" id="bt" class="buttonInterface"style="border:none; background-color:white; margin-left: 0.5rem ">
+    <i class="fa fa-search"  style="color:purple;"></i>
+</button>
+
+<ng-container *ngIf="show" >
+    <div class="division" style="padding: 0.5px; ">
+            <div style=" height: 30px; background-color: #d2c9d2;" class="card-header transparent border-0 text-muted " id="cardheader1" >
+                <h6  class="marginh5" >Recherche Courrier</h6>
+            </div>
+        <div class="row col-md-11">
+            <div class="col-md-4 form-group">
+                <label style="font-weight:bold" >Objet</label>
+                <input type="text" placeholder="Type to search..." class="form-control"[(ngModel)]="subject">
+            </div>
+            <div class="col-md-4 form-group">
+                <label style="font-weight:bold">Expéditeur</label>
+                <input type="text" placeholder="Type to search..." class="form-control"[(ngModel)]="entiteemettrice">
+            </div>
+            <div class="col-md-4 form-group">
+                <label style="font-weight:bold">Référence</label>
+                <input type="text" placeholder="Type to search..." class="form-control"[(ngModel)]="refexterne">
+            </div>
+        </div>
+        <div class="row col-md-11">
+            <div class="form-group col-md-8" [hidden]="radioSelected2 !== ''">
+                            <label style="font-weight:bold">Destination</label>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" (click)="onItemClick1('Par Direction')" #nature1
+                                      style="width: 37px;margin-left: 0.05%;height: 35px;">
+                                    <i class="fa fa-sitemap"></i>
+                                </span>
+                                <select class="dropdown-toggle d-block"
+                                        style="border: 1px solid lightgrey;font: 400 13.3333px Arial;padding: 7px 9px 8px;border-radius: 3px;width:100%;color: lightgrey;"[(ngModel)]="destination">
+                                    <option hidden [value]="Choisirunevaleur" selected style="color: lightgrey">
+                                        Cliquer sur l'icone à gauche du typologie
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-8" [hidden]="radioSelected2==='Par Direction' || radioSelected2===''">
+                            <label style="font-weight:bold">Destination</label>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"
+                                      (click)="onItemClick1('Par Direction')" #nature1
+                                      style="width: 37px;margin-left: 0.05%;height: 35px;">
+                                    <i class="fa fa-sitemap"></i>
+                                </span>
+                                <ejs-multiselect id="multiselect-checkbox" #checkbox
+                                                 showselectall="true"
+                                                 class="e-control e-multiselect e-lib"
+                                                 style="width: 100%; border: 1px solid #dee1e3;border-radius: 3px;color: lightgrey;"
+                                                 placeholder='  Choisir une valeur'
+                                                 [dataSource]='Users3'
+                                                 [fields]='checkFields'
+                                                 [mode]='mode'>
+                                </ejs-multiselect>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-8" *ngIf="testtree9" [hidden]="radioSelected2==='Par Personne' || radioSelected2===''">
+                            <label style="font-weight:bold">Destination</label>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"
+                                      (click)="onItemClick1('Par Personne')" #nature1 style="width: 37px;margin-left: 0.05%;height: 35px;">
+                                    <i class="fa fa-user"> </i>
+                                </span>
+                                <dx-drop-down-box id="tree"
+                                                  [(value)]="treeBoxValue2"
+                                                  valueExpr="ID"
+                                                  displayExpr="name"
+                                                  placeholder="Choisir une valeur"
+                                                  [showClearButton]="true"
+                                                  [dataSource]="treeDataSource2"
+                                                  (onValueChanged)="syncTreeViewSelection2($event)"
+                                                  [visible]="this.radioSelected2=='Par Direction'"
+                                                  style="width: 100%;" >
+                                    <dxo-drop-down-options height="300px"></dxo-drop-down-options>
+                                    <div *dxTemplate="let data of 'content'">
+                                        <dx-tree-view #treeView2ID
+                                                      [dataSource]="treeDataSource2"
+                                                      dataStructure="plain"
+                                                      keyExpr="ID"
+                                                      parentIdExpr="headId"
+                                                      selectionMode="multiple"
+                                                      showCheckBoxesMode="normal"
+                                                      [selectNodesRecursive]="false"
+                                                      displayExpr="name"
+                                                      [selectByClick]="true"
+                                                      (onContentReady)="syncTreeViewSelection2($event)"
+                                                      (keyExprChange)="syncTreeViewSelection2($event)"
+                                                      (onItemSelectionChanged)="treeView_itemSelectionChanged2($event)"
+                                                      [width]="500">
+                                        </dx-tree-view>
+                                    </div>
+                                </dx-drop-down-box>
+                            </div>
+                        </div>
+
+<!--            <div class="form-group col-md-4">-->
+<!--                                <label style="font-weight:bold">Type</label>-->
+<!--                                <input type="text" placeholder="Type to search..." class="form-control"[(ngModel)]="typeCourrier">-->
+<!--                            </div>-->
+                </div>
+               <div class="row col-md-11">
+                    <div class="form-group col-md-4">
+                        <label style="font-weight:bold" >Date Courrier</label>
+                        <div class="input-group-prepend">
+                            <label style="padding: 0.5px;"> Début </label>
+                            <input id="dateArrivee1" class="form-control" placeholder="yyyy-mm-dd" name="dp3" ngbDatepicker #p3="ngbDatepicker"style="height: 35px"[(ngModel)]="dateArrivee1"><br>
+                            <span class="input-group-text" (click)="p3.toggle()"><i class="fa fa-calendar"></i></span>
+                        </div>
+                    </div>
+                   <div class="form-group col-md-4">
+                       <label  ></label>
+
+                       <div class="input-group-prepend">
+                                               <label style="padding: 0.5px;"> Fin </label>
+                                           <input id="dateArrivee2" class="form-control" placeholder="yyyy-mm-dd" name="dp4" ngbDatepicker #p4="ngbDatepicker"style="height: 35px"[(ngModel)]="dateArrivee2"><br>
+                                           <span class="input-group-text" (click)="p4.toggle()"><i class="fa fa-calendar"></i></span>
+                                       </div>
+                                   </div>
+                   </div>
+
+        <button type="button"
+                class="btn btn-primary btn-rounded" style="background-color: #00A09D;border: #00A09D; margin-left:85%;"(click)="searchWithLazyLoading()">Rechercher
+        </button>
+
+    </div>
+
+</ng-container>
+
+
+
+
+
+
+
+
+
+
+
+
+
