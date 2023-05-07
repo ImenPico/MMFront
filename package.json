@@ -43,7 +43,7 @@
     "file-saver": "^2.0.2",
     "flag-icon-css": "3.3.0",
     "font-awesome": "4.7.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jwt-decode": "^2.2.0",
     "leaflet-map": "0.2.1",
     "moment": "^2.24.0",
